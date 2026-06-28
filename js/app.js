@@ -552,14 +552,13 @@ function openLoan(itemId) {
     }
     state.pendingCollaterals = needed.map(n => nextLoanIdx - needed.length + needed.indexOf(n));
 
-    const allExhausted = LOAN_CONFIG.collateralValues[state.loanCount] === 0;
-    if (totalValue < gap && !allExhausted) {
-        // Not enough even with all remaining collaterals
-        showToast("🏦 王行长：你剩下的家当加起来也不够买这个！换便宜点的吧！", "error");
-        return;
-    }
     if (totalValue < gap) {
-        showToast("🏦 王行长：你身上已经没有任何东西可以抵押了！请回吧！", "error");
+        // Ran through all available collaterals but still not enough
+        if (needed.length === 0 && LOAN_CONFIG.collateralValues[state.loanCount] === 0) {
+            showToast("🏦 王行长：你身上已经没有任何东西可以抵押了！请回吧！", "error");
+        } else {
+            showToast("🏦 王行长：你剩下的家当加起来(" + formatMoneyFull(totalValue) + ")也不够买这个(" + formatMoneyFull(gap) + ")！换便宜点的吧！", "error");
+        }
         return;
     }
 
