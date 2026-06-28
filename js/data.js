@@ -130,7 +130,8 @@ const ITEMS = [
         emoji: '☕',
         desc: '一杯中杯拿铁，亿万富翁的标配',
 
-        imageUrl: 'assets/products/starbucks.jpg',        toast: '作为亿万富翁，你终于实现了星巴克自由！☕',
+        imageUrl: 'assets/products/starbucks.jpg',
+        toast: '作为亿万富翁，你终于实现了星巴克自由！☕',
     },
     {
         id: 'xicha',
@@ -140,7 +141,8 @@ const ITEMS = [
         emoji: '🍵',
         desc: '网红奶茶，排队两小时喝到嘴',
 
-        imageUrl: 'assets/products/xicha.jpg',        toast: '不用排队直接买，这就是有钱人的快乐吗？🧋',
+        imageUrl: 'assets/products/xicha.jpg',
+        toast: '不用排队直接买，这就是有钱人的快乐吗？🧋',
     },
     {
         id: 'wagyu',
@@ -169,7 +171,8 @@ const ITEMS = [
         emoji: '🍽️',
         desc: '三星主厨定制，一生必吃一次',
 
-        imageUrl: 'assets/products/michelin.jpg',        toast: '米其林：欢迎亿万富翁光临 👨‍🍳',
+        imageUrl: 'assets/products/michelin.jpg',
+        toast: '米其林：欢迎亿万富翁光临 👨‍🍳',
     },
     {
         id: 'lafite',
@@ -179,7 +182,8 @@ const ITEMS = [
         emoji: '🍷',
         desc: '传说中的82年拉菲，来瓶82年的拉菲',
 
-        imageUrl: 'assets/products/lafite.jpg',        toast: '82年的拉菲配99年的雪茄，这才是人生 🫧',
+        imageUrl: 'assets/products/lafite.jpg',
+        toast: '82年的拉菲配99年的雪茄，这才是人生 🫧',
     },
 
     // ---- 🏠 日用生活 ----
@@ -252,7 +256,8 @@ const ITEMS = [
         emoji: '📱',
         desc: '最新款苹果，买最贵的配置',
 
-        imageUrl: 'assets/products/iphone.jpg',        toast: '买iPhone不需要理由，因为你有钱 💅',
+        imageUrl: 'assets/products/iphone.jpg',
+        toast: '买iPhone不需要理由，因为你有钱 💅',
     },
     {
         id: 'macbook',
@@ -432,7 +437,8 @@ const ITEMS = [
         emoji: '💃',
         desc: '顶级模特伴游，全程奢华体验',
 
-        imageUrl: 'assets/products/accompanion.jpg',        toast: '这才是高端社交的正确打开方式 💃',
+        imageUrl: 'assets/products/accompanion.jpg',
+        toast: '这才是高端社交的正确打开方式 💃',
     },
     {
         id: 'celebrity-dinner',
@@ -442,7 +448,8 @@ const ITEMS = [
         emoji: '⭐',
         desc: '与一线明星共进私人晚宴',
 
-        imageUrl: 'assets/products/celebrity-dinner.jpg',        toast: '帮我也要个签名 🤩',
+        imageUrl: 'assets/products/celebrity-dinner.jpg',
+        toast: '帮我也要个签名 🤩',
     },
     {
         id: 'model-party',
@@ -509,7 +516,8 @@ const ITEMS = [
         emoji: '🏝️',
         desc: '加勒比海私人岛屿，你的王国',
 
-        imageUrl: 'assets/products/island.jpg',        toast: '岛主你好！请问要取什么岛名？ 🏝️',
+        imageUrl: 'assets/products/island.jpg',
+        toast: '岛主你好！请问要取什么岛名？ 🏝️',
     },
     {
         id: 'picasso',
@@ -570,7 +578,8 @@ const ITEMS = [
         emoji: '🏗️',
         desc: '买下开发商，给自己免物业费',
 
-        imageUrl: 'assets/products/your-building.jpg',        toast: '以后小区物业见到你都得叫爸爸 🏠',
+        imageUrl: 'assets/products/your-building.jpg',
+        toast: '以后小区物业见到你都得叫爸爸 🏠',
     },
     {
         id: 'nike',
@@ -614,7 +623,8 @@ const ITEMS = [
         emoji: '🏡',
         desc: '好莱坞明星做邻居',
 
-        imageUrl: 'assets/products/beverly.jpg',        toast: '你的新地址：比弗利山庄 富豪路 1号 📍',
+        imageUrl: 'assets/products/beverly.jpg',
+        toast: '你的新地址：比弗利山庄 富豪路 1号 📍',
     },
     {
         id: 'ny-penthouse',
