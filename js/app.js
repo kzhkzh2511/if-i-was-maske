@@ -606,15 +606,7 @@ function confirmLoan() {
 
     const char = getChar();
 
-    // Collateral value limit: each mortgage has a max it can cover
-    const collIdx = Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1);
-    const collValue = LOAN_CONFIG.collateralValues[collIdx];
-    if (collValue > 0 && loanAmount > collValue) {
-        showToast(`🏦 王行长：${LOAN_CONFIG.collateralList[collIdx]}撑死值 ${formatMoneyFull(collValue)}，不够买这个啊！换便宜点的吧！`, "error");
-        closeLoan();
-        return;
-    }
-
+    // Collateral validation already done in openLoan (combined package check)
     const maxLoan = char.wealth * MAX_LOAN_RATIO;
     if (state.totalLoan + loanAmount > maxLoan) {
         showToast('贷款：王行长：你的信用额已经用尽了！先还一点再来吧！', 'error');
