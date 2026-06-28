@@ -536,32 +536,50 @@ function openLoan(itemId) {
     if (!item) return;
 
     pendingLoanItemId = itemId;
-    const char = getChar();
-    const remaining = getBudget();
-    const loanAmount = item.price - remaining;
+    const gap = Math.max(0, item.price - getBudget());
 
-    dom.loanAmount.textContent = formatMoneyFull(item.price);
+    // Calculate required collateral package (A + B + C...)
+    let needed = [];
+    let totalValue = 0;
+    let nextLoanIdx = state.loanCount;
+    while (totalValue < gap && nextLoanIdx < LOAN_CONFIG.collateralList.length && LOAN_CONFIG.collateralValues[nextLoanIdx] > 0) {
+        needed.push({
+            name: LOAN_CONFIG.collateralList[nextLoanIdx],
+            value: LOAN_CONFIG.collateralValues[nextLoanIdx]
+        });
+        totalValue += LOAN_CONFIG.collateralValues[nextLoanIdx];
+        nextLoanIdx++;
+    }
+    state.pendingCollaterals = needed.map(n => nextLoanIdx - needed.length + needed.indexOf(n));
+
+    const allExhausted = LOAN_CONFIG.collateralValues[state.loanCount] === 0;
+    if (totalValue < gap && !allExhausted) {
+        // Not enough even with all remaining collaterals
+        showToast("🏦 王行长：你剩下的家当加起来也不够买这个！换便宜点的吧！", "error");
+        return;
+    }
+    if (totalValue < gap) {
+        showToast("🏦 王行长：你身上已经没有任何东西可以抵押了！请回吧！", "error");
+        return;
+    }
+
+    // Combine display
+    const collList = needed.map(n => n.name + '(' + formatMoneyFull(n.value) + ')').join(' + ');
+    const char = getChar();
+
+    dom.loanAmount.textContent = '商品: ' + formatMoneyFull(item.price) + '  缺口: ' + formatMoneyFull(gap);
     dom.loanRate.textContent = LOAN_CONFIG.interestRate + '%';
     dom.loanYears.textContent = LOAN_CONFIG.repaymentYears + ' 年';
     dom.loanMonthly.textContent = '$' + LOAN_CONFIG.monthlyPayment.toFixed(2);
-    const collIdx = Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1);
-    const collValue = LOAN_CONFIG.collateralValues[collIdx];
-    dom.loanCollateral.textContent = `${LOAN_CONFIG.collateralList[collIdx]}（估值 ${formatMoneyFull(collValue)}）`;
+    dom.loanCollateral.textContent = '抵押包: ' + collList + '  合计: ' + formatMoneyFull(totalValue);
     dom.loanManagerName.textContent = LOAN_CONFIG.managerName + ' 行长';
 
-    // Manager banter — progressive, matching collateral
-    const nextColl = LOAN_CONFIG.collateralList[Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1)];
-    if (state.loanCount === 0) {
-        dom.loanManagerSay.textContent = `"老弟来啦？我就喜欢你这种有眼光的年轻人！这次抵押物：${nextColl}，签字吧！"`;
-    } else if (state.loanCount >= LOAN_CONFIG.collateralList.length - 1) {
-        dom.loanManagerSay.textContent = '"老弟..." 王行长沉默了许久，"你身上已经没有任何东西可以抵押了。但谁让你是VIP呢？最后一次！签了吧！"';
-    } else if (state.loanCount >= LOAN_CONFIG.collateralList.length - 3) {
-        dom.loanManagerSay.textContent = `"老弟... 说实话我都不忍心了。但是生意归生意！这次抵押：${nextColl}！签字！"`;
+    if (needed.length === 1) {
+        dom.loanManagerSay.textContent = '“要买这个啊？抵押' + needed[0].name + '就够了，签字吧！”';
     } else {
-        dom.loanManagerSay.textContent = `"又来啦？老规矩，这次抵押：${nextColl}。签字签字 ✍️"`;
+        dom.loanManagerSay.textContent = '“这个贵啊！你得抵押 ' + needed.map(n => n.name).join(' + ') + ' 才够，确定要买？”';
     }
 
-    // Show cumulative debt
     if (state.totalLoan > 0) {
         dom.loanTotalDebt.style.display = 'block';
         dom.loanCurrentDebt.textContent = formatMoneyFull(state.totalLoan);
@@ -571,6 +589,7 @@ function openLoan(itemId) {
 
     dom.loanOverlay.style.display = 'flex';
 }
+
 
 function closeLoan() {
     dom.loanOverlay.style.display = 'none';
@@ -604,9 +623,13 @@ function confirmLoan() {
         return;
     }
 
-    state.totalLoan += collValue;
-    state.loanCount++;
-    state.wealth += collValue;
+    const colls = state.pendingCollaterals || [Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1)];
+    let batchValue = 0;
+    colls.forEach(function(idx) { batchValue += LOAN_CONFIG.collateralValues[idx]; });
+    state.totalLoan += batchValue;
+    state.loanCount += colls.length;
+    state.wealth += batchValue;
+    state.pendingCollaterals = null;
     if (pendingLoanItemId) {
         state.loanedItems.push(pendingLoanItemId);
         if (!state.cart[pendingLoanItemId]) state.cart[pendingLoanItemId] = 0;
