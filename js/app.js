@@ -498,20 +498,20 @@ function openLoan(itemId) {
     dom.loanRate.textContent = LOAN_CONFIG.interestRate + '%';
     dom.loanYears.textContent = LOAN_CONFIG.repaymentYears + ' 年';
     dom.loanMonthly.textContent = '$' + LOAN_CONFIG.monthlyPayment.toFixed(2);
-    dom.loanCollateral.textContent = LOAN_CONFIG.collateral;
+    const collIdx = Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1);
+    dom.loanCollateral.textContent = LOAN_CONFIG.collateralList[collIdx];
     dom.loanManagerName.textContent = LOAN_CONFIG.managerName + ' 行长';
 
-    // Manager banter
+    // Manager banter — progressive, matching collateral
+    const nextColl = LOAN_CONFIG.collateralList[Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1)];
     if (state.loanCount === 0) {
-        dom.loanManagerSay.textContent = '"老弟来啦？我就喜欢你这种有眼光的年轻人！"';
-    } else if (state.totalLoan > 1_000_000_000_000) {
-        dom.loanManagerSay.textContent = '"又来啦？你已经是我们宇宙负翁俱乐部的永久会员了！签字吧 ✍️"';
-    } else if (state.totalLoan > 500_000_000_000) {
-        dom.loanManagerSay.textContent = '"老弟，催收天团已经在路上了... 你确定还要贷？不过我喜欢你的胆量！"';
-    } else if (state.totalLoan > 100_000_000_000) {
-        dom.loanManagerSay.textContent = '"又来啦？你的两个肾都抵押了，要不考虑一下眼角膜？签字吧！"';
+        dom.loanManagerSay.textContent = `"老弟来啦？我就喜欢你这种有眼光的年轻人！这次抵押物：${nextColl}，签字吧！"`;
+    } else if (state.loanCount >= LOAN_CONFIG.collateralList.length - 1) {
+        dom.loanManagerSay.textContent = '"老弟..." 王行长沉默了许久，"你身上已经没有任何东西可以抵押了。但谁让你是VIP呢？最后一次！签了吧！"';
+    } else if (state.loanCount >= LOAN_CONFIG.collateralList.length - 3) {
+        dom.loanManagerSay.textContent = `"老弟... 说实话我都不忍心了。但是生意归生意！这次抵押：${nextColl}！签字！"`;
     } else {
-        dom.loanManagerSay.textContent = '"痛快！我就喜欢老客户！签字签字 ✍️"';
+        dom.loanManagerSay.textContent = `"又来啦？老规矩，这次抵押：${nextColl}。签字签字 ✍️"`;
     }
 
     // Show cumulative debt
