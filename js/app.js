@@ -577,7 +577,7 @@ function confirmLoan() {
     if (pendingLoanItemId && !item) return;
 
     const remaining = getBudget();
-    const loanAmount = Math.max(0, item.price - remaining);
+    const loanAmount = item ? Math.max(0, item.price - remaining) : 0;
 
     const char = getChar();
 
