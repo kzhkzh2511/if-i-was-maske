@@ -499,8 +499,7 @@ function openLoan(itemId) {
     dom.loanYears.textContent = LOAN_CONFIG.repaymentYears + ' 年';
     dom.loanMonthly.textContent = '$' + LOAN_CONFIG.monthlyPayment.toFixed(2);
     const collIdx = Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1);
-    const collValue = LOAN_CONFIG.collateralValues[collIdx];
-    dom.loanCollateral.textContent = `${LOAN_CONFIG.collateralList[collIdx]}（估值 ${formatMoneyFull(collValue)}）`;
+    dom.loanCollateral.textContent = LOAN_CONFIG.collateralList[collIdx];
     dom.loanManagerName.textContent = LOAN_CONFIG.managerName + ' 行长';
 
     // Manager banter — progressive, matching collateral
@@ -541,17 +540,7 @@ function confirmLoan() {
     const loanAmount = Math.max(0, item.price - remaining);
 
     const char = getChar();
-
-    // Collateral value limit: each mortgage has a max it can cover
-    const collIdx = Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1);
-    const collValue = LOAN_CONFIG.collateralValues[collIdx];
-    if (collValue > 0 && loanAmount > collValue) {
-        showToast(`🏦 王行长：${LOAN_CONFIG.collateralList[collIdx]}撑死值 ${formatMoneyFull(collValue)}，不够买这个啊！换便宜点的吧！`, "error");
-        closeLoan();
-        return;
-    }
-
-    const maxLoan = char.wealth * MAX_LOAN_RATIO;
+    const maxLoan = char.wealth * 100;
     if (state.totalLoan + loanAmount > maxLoan) {
         showToast('贷款：王行长：你的信用额已经用尽了！先还一点再来吧！', 'error');
         closeLoan();

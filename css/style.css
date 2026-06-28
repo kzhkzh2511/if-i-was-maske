@@ -145,6 +145,26 @@ body {
     flex-shrink: 0;
     white-space: nowrap;
 }
+.btn-loan {
+    background: linear-gradient(135deg, var(--accent-red), #880000);
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    transition: var(--transition);
+    flex-shrink: 0;
+    white-space: nowrap;
+    animation: loanPulse 1.5s ease-in-out infinite;
+}
+.btn-loan:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 23, 68, 0.4);
+}
+.btn-loan:active { transform: scale(0.97); }
+
 .btn-reset:hover {
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
