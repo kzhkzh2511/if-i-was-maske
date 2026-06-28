@@ -85,9 +85,6 @@ const WEALTH_ANIM_MAX_MS = 800;
 const WEALTH_ANIM_SCALE = 0.00000001;  // diff * scale = duration
 const TOAST_DURATION_MS = 3000;
 const TOAST_MAX_VISIBLE = 3;
-const CANVAS_PADDING = 40;
-const CANVAS_LINE_HEIGHT = 24;
-const CART_FAB_BOTTOM_DESKTOP = 32;
 const MAX_LOAN_RATIO = 100;  // max total loan = character.wealth * this
 
 // ===================== UTILITY =====================
@@ -120,9 +117,6 @@ function getCartTotal() {
     return getCartItems().reduce((sum, { item, qty }) => sum + item.price * qty, 0);
 }
 
-function getRemainingWealth() {
-    return Math.max(0, state.wealth - getCartTotal());
-}
 
 function getBudget() {
     return Math.max(0, state.wealth - getCartTotal());
@@ -133,12 +127,6 @@ function getSpentRatio() {
     return Math.min(1, getCartTotal() / char.wealth);
 }
 
-function isLoanItem(itemId) {
-    const item = getItem(itemId);
-    if (!item) return false;
-    if (item.unaffordableForAll) return false;
-    return item.price > getBudget();
-}
 
 function isItemAffordable(itemId) {
     const item = getItem(itemId);
