@@ -278,7 +278,7 @@ function renderProducts(categoryId) {
 
         return `
             <div class="product-card" data-id="${item.id}">
-                <div class="product-emoji">${item.imageUrl ? '<img class="product-img" src="' + item.imageUrl + '" alt="' + item.name + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'\'" loading="lazy" style="min-height:80px;background:var(--glass-bg);">' + '<span style="display:none">' + item.emoji + '</span>' : item.emoji}</div>
+                <div class="product-emoji">${item.imageUrl ? '<img class="product-img" src="' + item.imageUrl + '" alt="' + item.name + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'\'" loading="lazy" style="height:80px;background:var(--glass-bg);">' + '<span style="display:none">' + item.emoji + '</span>' : item.emoji}</div>
                 <div class="product-name">${item.name}</div>
                 <div class="product-desc">${item.desc}</div>
                 <div class="product-price">${formatMoneyFull(item.price)}</div>
