@@ -1,7 +1,6 @@
-﻿// ============================================================
+// ============================================================
 // 假如我是马斯克 — 核心逻辑
 
-;(function() {
 // ============================================================
 
 // ===================== STATE =====================
@@ -77,6 +76,7 @@ const dom = {
     btnReset: $('#btnReset'),
     toastContainer: $('#toastContainer'),
     header: $('#header'),
+    btnLoan: $('#btnLoan'),
 };
 
 // ===================== CONSTANTS =====================
@@ -304,11 +304,16 @@ function renderProducts(categoryId) {
 
 // ===================== CART =====================
 function addToCart(itemId) {
+    const item = getItem(itemId);
+    const budget = getBudget();
+    if (item && item.price > budget) {
+        showToast("💸 余额不足！去贷点款吧 → 点击顶部 💰 贷款按钮", "warning");
+        return;
+    }
     if (!state.cart[itemId]) state.cart[itemId] = 0;
     state.cart[itemId]++;
 
     // Update wealth
-    const item = getItem(itemId);
     const char = getChar();
     animateWealthTo(Math.max(0, char.wealth - getCartTotal()));
 
@@ -485,6 +490,40 @@ function closeCart() {
 // ===================== LOAN SYSTEM =====================
 let pendingLoanItemId = null;
 
+function openLoanGeneral() {
+    pendingLoanItemId = null;
+    const collIdx = Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1);
+    const collValue = LOAN_CONFIG.collateralValues[collIdx];
+    if (collValue === 0) {
+        showToast("🏦 王行长：你身上已经没有任何东西可以抵押了！请回吧！", "error");
+        return;
+    }
+    const collName = LOAN_CONFIG.collateralList[collIdx];
+    dom.loanAmount.textContent = formatMoneyFull(collValue);
+    dom.loanRate.textContent = LOAN_CONFIG.interestRate + '%';
+    dom.loanYears.textContent = LOAN_CONFIG.repaymentYears + ' 年';
+    dom.loanMonthly.textContent = '$' + LOAN_CONFIG.monthlyPayment.toFixed(2);
+    dom.loanCollateral.textContent = collName + '(估值 ' + formatMoneyFull(collValue) + ')';
+    dom.loanManagerName.textContent = LOAN_CONFIG.managerName + ' 行长';
+    const nextColl = LOAN_CONFIG.collateralList[collIdx];
+    if (state.loanCount === 0) {
+        dom.loanManagerSay.textContent = '"老弟来啦？我就喜欢你这种有眼光的年轻人！这次抵押物：' + nextColl + '，签字吧！"';
+    } else if (state.loanCount >= LOAN_CONFIG.collateralList.length - 1) {
+        dom.loanManagerSay.textContent = '"老弟..." 王行长沉默了许久，"你身上已经没有任何东西可以抵押了。"';
+    } else if (state.loanCount >= LOAN_CONFIG.collateralList.length - 3) {
+        dom.loanManagerSay.textContent = '"老弟... 说实话我都不忍心了。但是生意归生意！这次抵押：' + nextColl + '！签字！"';
+    } else {
+        dom.loanManagerSay.textContent = '"又来啦？老规矩，这次抵押：' + nextColl + '。签字签字 ✍️"';
+    }
+    if (state.totalLoan > 0) {
+        dom.loanTotalDebt.style.display = 'block';
+        dom.loanCurrentDebt.textContent = formatMoneyFull(state.totalLoan);
+    } else {
+        dom.loanTotalDebt.style.display = 'none';
+    }
+    dom.loanOverlay.style.display = 'flex';
+}
+
 function openLoan(itemId) {
     const item = getItem(itemId);
     if (!item) return;
@@ -558,14 +597,14 @@ function confirmLoan() {
         return;
     }
 
-    state.totalLoan += loanAmount;
+    state.totalLoan += collValue;
     state.loanCount++;
-    state.loanedItems.push(pendingLoanItemId);
-    state.wealth = 0; // You're broke now - the bank covered it
-
-    // Add to cart
-    if (!state.cart[pendingLoanItemId]) state.cart[pendingLoanItemId] = 0;
-    state.cart[pendingLoanItemId]++;
+    state.wealth += collValue;
+    if (pendingLoanItemId) {
+        state.loanedItems.push(pendingLoanItemId);
+        if (!state.cart[pendingLoanItemId]) state.cart[pendingLoanItemId] = 0;
+        state.cart[pendingLoanItemId]++;
+    }
 
     // Loan easter egg thresholds
     const threshold = LOAN_CONFIG.eggThresholds
@@ -1023,6 +1062,9 @@ function initApp() {
     dom.loanCancel.setAttribute('aria-label', '取消贷款');
     dom.btnReset.setAttribute('aria-label', '重置所有');
 
+    // Loan button
+    dom.btnLoan.addEventListener('click', openLoanGeneral);
+
     // Cart FAB
     dom.cartFab.addEventListener('click', openCart);
     dom.cartOverlay.addEventListener('click', closeCart);
@@ -1113,4 +1155,3 @@ function initApp() {
 
 document.addEventListener('DOMContentLoaded', initApp);
 
-})();
