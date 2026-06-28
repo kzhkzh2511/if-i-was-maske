@@ -183,9 +183,7 @@ function renderCharacters() {
                 data-char="${c.id}"
                 title="${c.nameEn} — ${c.tagline}">
             <span class="char-avatar">
-                <img class="char-img" src="${c.imageUrl || ''}"
-                     alt="${c.name}"
-                     onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+                ${c.imageUrl ? '<img class="char-img" src="' + c.imageUrl + '" alt="' + c.name + '" onerror="this.style.display=\x27none\x27;this.nextElementSibling.style.display=\x27inline\x27">' : ''}
                 <span class="char-emoji-fallback" style="${c.imageUrl ? 'display:none' : ''}">${c.emoji}</span>
             </span>
             <span class="char-name">${c.name}</span>
