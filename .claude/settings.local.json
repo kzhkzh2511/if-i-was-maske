@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Stocky__download_image",
+      "mcp__Stocky__search_stock_images",
+      "Bash(npx @anthropic/mcp-server-playwright --version)"
+    ]
+  }
+}

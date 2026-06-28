@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>假如我是马斯克 — 虚拟富翁购物体验</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="header-top">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">假如我是...</span>
+            </div>
+            <div class="wealth-area" id="wealthArea">
+                <div class="wealth-label">💰 当前财富</div>
+                <div class="wealth-value" id="wealthDisplay">$0</div>
+                <div class="debt-value" id="debtDisplay" style="display:none;">
+                    🏦 负债: <span id="debtAmount">$0</span>
+                </div>
+            </div>
+            <button class="btn-reset" id="btnReset" title="重新开始">🔄 重新开始</button>
+        </div>
+
+        <!-- Character Selector -->
+        <div class="character-strip" id="characterStrip">
+            <!-- Filled by JS -->
+        </div>
+
+        <!-- Category Tabs -->
+        <nav class="category-tabs" id="categoryTabs">
+            <!-- Filled by JS -->
+        </nav>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main-content" id="mainContent">
+        <div class="product-grid" id="productGrid">
+            <!-- Filled by JS -->
+        </div>
+    </main>
+
+    <!-- ==================== CART BUTTON (floating) ==================== -->
+    <button class="cart-fab" id="cartFab" title="购物车">
+        <span class="cart-fab-icon">🛒</span>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
+    <!-- ==================== CART DRAWER ==================== -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h2>🛒 购物车</h2>
+            <button class="cart-close" id="cartClose">✕</button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <div class="cart-empty" id="cartEmpty">
+                <span class="cart-empty-icon">🛒</span>
+                <p>购物车还是空的...</p>
+                <p class="cart-empty-sub">快去买点什么吧！</p>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none;">
+            <div class="cart-summary">
+                <div class="cart-total-row">
+                    <span>合计</span>
+                    <span class="cart-total" id="cartTotal">$0</span>
+                </div>
+                <div class="cart-remain-row">
+                    <span>余额</span>
+                    <span class="cart-remain" id="cartRemain">$0</span>
+                </div>
+                <div class="cart-loan-row" id="cartLoanRow" style="display:none;">
+                    <span>🏦 贷款</span>
+                    <span class="cart-loan" id="cartLoan">$0</span>
+                </div>
+            </div>
+            <button class="btn-checkout" id="btnCheckout" disabled>
+                ✨ 结账
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== CHECKOUT MODAL ==================== -->
+    <div class="modal-overlay" id="checkoutOverlay" style="display:none;">
+        <div class="modal checkout-modal" id="checkoutModal">
+            <button class="modal-close" id="checkoutClose">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon">🧾</span>
+                <h2>购物清单</h2>
+            </div>
+
+            <!-- Checkout content -->
+            <div class="checkout-body" id="checkoutBody">
+                <div class="checkout-character">
+                    🎭 扮演角色: <strong id="checkoutCharName">—</strong>
+                </div>
+                <div class="checkout-time" id="checkoutTime">—</div>
+                <div class="checkout-items" id="checkoutItems">
+                    <!-- Filled by JS -->
+                </div>
+                <div class="checkout-total">
+                    <div class="co-row">
+                        <span>💰 总消费</span>
+                        <span class="co-amount" id="checkoutTotal">$0</span>
+                    </div>
+                    <div class="co-row">
+                        <span>🧾 剩余财富</span>
+                        <span class="co-amount" id="checkoutRemain">$0</span>
+                    </div>
+                    <div class="co-row" id="checkoutLoanRow" style="display:none;">
+                        <span>🏦 银行贷款</span>
+                        <span class="co-amount debt" id="checkoutLoan">$0</span>
+                    </div>
+                    <div class="co-row co-percent">
+                        <span>📊 消费占比</span>
+                        <span class="co-amount" id="checkoutPercent">0%</span>
+                    </div>
+                </div>
+                <div class="checkout-review" id="checkoutReview">
+                    <!-- Funny review filled by JS -->
+                </div>
+            </div>
+
+            <div class="checkout-actions">
+                <button class="btn btn-secondary" id="checkoutCancel">再逛逛</button>
+                <button class="btn btn-primary" id="btnConfirmCheckout">✅ 确认购买</button>
+            </div>
+
+            <!-- Success state (hidden initially) -->
+            <div class="checkout-success" id="checkoutSuccess" style="display:none;">
+                <div class="success-icon">🎉</div>
+                <h2>恭喜！购买成功！</h2>
+                <p class="success-sub" id="successSub">你成功帮马斯克花掉了他的财富</p>
+                <div class="success-actions">
+                    <button class="btn btn-primary" id="btnSaveImage">🖼️ 保存纪念账单</button>
+                    <button class="btn btn-secondary" id="btnCopyReceipt">📋 复制收据文本</button>
+                    <button class="btn btn-secondary" id="btnDone">继续购物</button>
+                </div>
+                <!-- Canvas for bill image -->
+                <canvas id="billCanvas" style="display:none;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== LOAN MODAL ==================== -->
+    <div class="modal-overlay" id="loanOverlay" style="display:none;">
+        <div class="modal loan-modal" id="loanModal">
+            <div class="modal-header loan-header">
+                <span class="modal-icon">🏦</span>
+                <h2>欠揍银行贷款审批</h2>
+            </div>
+            <div class="loan-body">
+                <div class="loan-manager">
+                    <div class="manager-avatar">👨‍💼</div>
+                    <div class="manager-speech">
+                        <p class="manager-name" id="loanManagerName">王得花 行长</p>
+                        <p class="manager-say" id="loanManagerSay">
+                            "老弟来啦？我就喜欢你这种有眼光的年轻人！"
+                        </p>
+                    </div>
+                </div>
+                <div class="loan-terms">
+                    <div class="loan-term">
+                        <span class="term-label">💰 贷款金额</span>
+                        <span class="term-value" id="loanAmount">$0</span>
+                    </div>
+                    <div class="loan-term">
+                        <span class="term-label">📈 年利率</span>
+                        <span class="term-value danger" id="loanRate">666%</span>
+                    </div>
+                    <div class="loan-term">
+                        <span class="term-label">📅 还款期限</span>
+                        <span class="term-value" id="loanYears">1000 年</span>
+                    </div>
+                    <div class="loan-term">
+                        <span class="term-label">💳 每月还款</span>
+                        <span class="term-value" id="loanMonthly">$0.01</span>
+                    </div>
+                    <div class="loan-term">
+                        <span class="term-label">🫁 抵押物</span>
+                        <span class="term-value" id="loanCollateral">你的左肾</span>
+                    </div>
+                </div>
+                <p class="loan-disclaimer">
+                    ⚠️ 签字即同意放弃所有权利（包括不还钱的权利）
+                </p>
+                <div class="loan-total-debt" id="loanTotalDebt" style="display:none;">
+                    🏦 当前总负债: <strong id="loanCurrentDebt">$0</strong>
+                </div>
+            </div>
+            <div class="loan-actions">
+                <button class="btn btn-secondary" id="loanCancel">我再想想</button>
+                <button class="btn btn-danger" id="loanConfirm">🖊️ 签了！</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST CONTAINER ==================== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <!-- canvas-confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1" integrity="sha384-XqLHCqH4eP2dS3C9lTyjI3zUqPM3aqZ9XKqKFOmhY6JXPL7T0d7kF6FEsE2R6aP" crossorigin="anonymous"></script>
+    <!-- Data -->
+    <script src="js/data.js"></script>
+    <!-- App -->
+    <script src="js/app.js"></script>
+</body>
+</html>
