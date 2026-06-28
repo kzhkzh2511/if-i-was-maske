@@ -222,6 +222,8 @@ function switchCharacter(charId) {
     state.cart = {};
     state.totalLoan = 0;
     state.loanCount = 0;
+    state.loanedItems = [];
+    state.checkoutCompleted = false;
 
     const char = getChar();
     state.wealth = char.wealth;
