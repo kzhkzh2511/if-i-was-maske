@@ -283,7 +283,7 @@ function renderProducts(categoryId) {
         if (unaffordable) {
             btnHtml = `<button class="product-btn unaffordable" disabled>⛔ 余额不足</button>`;
         } else if (needsLoan) {
-            btnHtml = `<button class="product-btn loan-btn" data-id="${item.id}" data-action="loan">💸 贷款买</button>`;
+            btnHtml = `<button class="product-btn loan-btn" data-id="${item.id}" data-action="loan">💰 贷款买</button>`;
         } else {
             btnHtml = `<button class="product-btn" data-id="${item.id}" data-action="add">🛒 加入购物车</button>`;
         }
@@ -307,7 +307,14 @@ function addToCart(itemId) {
     const item = getItem(itemId);
     const budget = getBudget();
     if (item && item.price > budget) {
-        showToast("💸 余额不足！去贷点款吧 → 点击顶部 💰 贷款按钮", "warning");
+        // Check if collateral is still available, then auto-open loan
+        const collTest = LOAN_CONFIG.collateralValues[Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1)];
+        if (collTest > 0) {
+            showToast("💸 余额不足，自动帮你跳转贷款！签字后商品自动加入购物车", "warning");
+            openLoan(itemId);
+        } else {
+            showToast("💸 余额不足，而且已经贷无可贷了！", "error");
+        }
         return;
     }
     if (!state.cart[itemId]) state.cart[itemId] = 0;
