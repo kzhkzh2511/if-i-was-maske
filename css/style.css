@@ -162,6 +162,30 @@ body {
     -ms-overflow-style: none;
 }
 .character-strip::-webkit-scrollbar { display: none; }
+.character-strip-scroll-hint {
+    position: relative;
+}
+.character-strip-scroll-hint::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, transparent, var(--bg-primary));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.character-strip-scroll-hint.has-overflow::after {
+    opacity: 1;
+}
+@media (hover: none) and (pointer: coarse) {
+    .character-strip-scroll-hint::after {
+        width: 24px;
+        opacity: 0.6;
+    }
+}
 
 .char-btn {
     display: flex;
@@ -1020,6 +1044,10 @@ body {
 @media (max-width: 768px) {
     :root {
         --header-h: 130px;
+    }
+    .character-strip {
+        -webkit-mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
+        mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
     }
 
     .header-top {

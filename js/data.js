@@ -202,6 +202,8 @@ const ITEMS = [
         price: 429,
         emoji: '💨',
         desc: '吹风机中的爱马仕',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Dyson_logo.svg/240px-Dyson_logo.svg.png",
         toast: '戴森：感谢富豪的认可 💇‍♂️',
     },
     {
@@ -211,6 +213,8 @@ const ITEMS = [
         price: 849,
         emoji: '🧱',
         desc: '7541块积木，拼到你手软',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/240px-LEGO_logo.svg.png",
     },
     {
         id: 'switch',
@@ -219,7 +223,8 @@ const ITEMS = [
         price: 449,
         emoji: '🎮',
         desc: '任天堂最新款，先买再说',
-    },
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Nintendo_Switch_logo.svg/240px-Nintendo_Switch_logo.svg.png",    },
     {
         id: 'sonytv',
         name: '索尼 85寸 电视',
@@ -227,6 +232,8 @@ const ITEMS = [
         price: 3999,
         emoji: '📺',
         desc: '85寸大法，客厅就是电影院',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Sony_logo.svg/240px-Sony_logo.svg.png",
     },
     {
         id: 'smart-home',
@@ -255,6 +262,8 @@ const ITEMS = [
         price: 3499,
         emoji: '💻',
         desc: '顶配M4芯片，剪辑8K不卡顿',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/MacBook_Pro_16_inch.svg/240px-MacBook_Pro_16_inch.svg.png",
     },
     {
         id: 'tesla',
@@ -273,6 +282,8 @@ const ITEMS = [
         price: 35000,
         emoji: '🖥️',
         desc: 'AI训练神器，黄仁勋的快乐卡',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/NVIDIA_H100_GPU.jpg/240px-NVIDIA_H100_GPU.jpg",
         // toast 按角色处理
     },
     {
@@ -290,6 +301,8 @@ const ITEMS = [
         price: 2500,
         emoji: '🛰️',
         desc: '马斯克的太空Wi-Fi，全球不断网',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Starlink_Logo.svg/240px-Starlink_Logo.svg.png",
     },
 
     // ---- 👔 轻奢风尚 ----
@@ -300,6 +313,8 @@ const ITEMS = [
         price: 1850,
         emoji: '👜',
         desc: '经典老花，百搭不过时',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Louis_Vuitton_logo.svg/240px-Louis_Vuitton_logo.svg.png",
     },
     {
         id: 'rolex',
@@ -308,6 +323,8 @@ const ITEMS = [
         price: 10000,
         emoji: '⌚',
         desc: '一劳永逸，绿水鬼',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Rolex_logo.svg/240px-Rolex_logo.svg.png",
         toast: '一劳永逸？想多了，买了还想买 ⌚',
     },
     {
@@ -317,6 +334,8 @@ const ITEMS = [
         price: 30000,
         emoji: '👛',
         desc: '比股票还难买的包，你直接拿下',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Hermes_logo.svg/240px-Hermes_logo.svg.png",
     },
     {
         id: 'vca',
@@ -333,7 +352,8 @@ const ITEMS = [
         price: 80000,
         emoji: '⌚',
         desc: '表王中的表王，排队三年起',
-    },
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Patek_Philippe_logo.svg/240px-Patek_Philippe_logo.svg.png",    },
     {
         id: 'savile',
         name: '定制西装 Savile Row',
@@ -454,7 +474,8 @@ const ITEMS = [
         price: 3_000_000,
         emoji: '🏎️',
         desc: '顶级超跑，极速490km/h',
-        toast: '这车一脚油门下去，半套房没了 🏎️',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Bugatti_logo_2004.svg/240px-Bugatti_logo_2004.svg.png",        toast: '这车一脚油门下去，半套房没了 🏎️',
     },
     {
         id: 'yacht',
@@ -480,7 +501,8 @@ const ITEMS = [
         price: 140_000_000,
         emoji: '🎨',
         desc: '毕加索真迹，挂在家里当装饰',
-    },
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pablo_Picasso_Signature.svg/240px-Pablo_Picasso_Signature.svg.png",    },
     {
         id: 'gulfstream',
         name: '湾流 G700 私人飞机',
@@ -488,7 +510,8 @@ const ITEMS = [
         price: 78_000_000,
         emoji: '🛩️',
         desc: '全球最先进公务机，富豪标配',
-    },
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Gulfstream_logo.svg/240px-Gulfstream_logo.svg.png",    },
     {
         id: 'monaco',
         name: '摩纳哥顶层公寓',
@@ -506,6 +529,8 @@ const ITEMS = [
         price: 44_000_000_000,
         emoji: '🐦',
         desc: '把蓝色小鸟收入囊中，自由删帖',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/240px-Logo_of_Twitter.svg.png",
         toast: '🎉 欢迎加入俱乐部！现在你可以自由删帖了（不是）',
     },
     {
@@ -532,6 +557,8 @@ const ITEMS = [
         price: 165_000_000_000,
         emoji: '✅',
         desc: 'Just buy it! 整个公司都是你的',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/240px-Logo_NIKE.svg.png",
         toast: '以后全球的勾子都归你了 ✅',
     },
     {
@@ -541,6 +568,8 @@ const ITEMS = [
         price: 3_000_000_000_000,
         emoji: '🍎',
         desc: '库克：不卖。而且你也买不起 🤷',
+
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/240px-Apple_logo_black.svg.png",
         unaffordableForAll: true,
     },
     {

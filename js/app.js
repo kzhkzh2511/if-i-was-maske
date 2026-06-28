@@ -305,6 +305,7 @@ function addToCart(itemId) {
     animateWealthTo(Math.max(0, char.wealth - getCartTotal()));
 
     updateCartUI();
+    renderProducts(getActiveCategory());
     showToastForItem(itemId);
 }
 
