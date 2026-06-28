@@ -445,22 +445,11 @@ function showToastForItem(itemId) {
     const char = getChar();
     let msg = '';
 
-    // Character-specific toasts
-    if (item.id === 'tesla' && char.id === 'musk') {
-        msg = '好家伙，左手造车右手买车 🚗';
-    } else if (item.id === 'tesla') {
-        msg = '帮马斯克冲业绩？好人啊 🤝';
-    } else if (item.id === 'twitter') {
-        msg = '🎉 欢迎加入俱乐部！现在你可以自由删帖了（不是）';
-    } else if (item.id === 'space-travel' && char.id === 'musk') {
-        msg = '马斯克：亲，要不要员工折扣？🚀';
-    } else if (item.id === 'space-travel' && char.id === 'jackma') {
-        msg = '马老师也要上天了？';
-    } else if (item.id === 'maotai' && char.id === 'jackma') {
-        msg = '马老师：这个我熟 🍶';
-    } else if (item.id === 'h100' && char.id === 'huang') {
-        msg = '黄老板：自家产品也要买？💰';
-    } else if (item.toast) {
+    // Character-specific toasts (data-driven from item.charToasts)
+    if (item.charToasts) {
+        msg = item.charToasts[char.id] || item.charToasts._default || '';
+    }
+    if (!msg && item.toast) {
         msg = item.toast;
     }
 
