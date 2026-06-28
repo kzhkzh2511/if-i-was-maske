@@ -7,7 +7,6 @@ const CHARACTERS = [
         name: '埃隆·马斯克',
         nameEn: 'Elon Musk',
         emoji: '🚀',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Elon_Musk_%28cropped%29.jpg/240px-Elon_Musk_%28cropped%29.jpg',
         wealth: 250_000_000_000,
         currency: 'USD',
         tagline: '科技狂人、Twitter 之王',
@@ -20,7 +19,6 @@ const CHARACTERS = [
         name: '马云',
         nameEn: 'Jack Ma',
         emoji: '🐎',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Jack_Ma_2017_%28cropped%29.jpg/240px-Jack_Ma_2017_%28cropped%29.jpg',
         wealth: 35_000_000_000,
         currency: 'USD',
         tagline: '乡村教师、阿里传奇',
@@ -33,7 +31,6 @@ const CHARACTERS = [
         name: '马化腾',
         nameEn: 'Pony Ma',
         emoji: '🐧',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/%E9%A9%AC%E5%8C%96%E8%85%BE_-_Pony_Ma_%282020%29.jpg/240px-%E9%A9%AC%E5%8C%96%E8%85%BE_-_Pony_Ma_%282020%29.jpg',
         wealth: 45_000_000_000,
         currency: 'USD',
         tagline: '低调极客、社交帝国',
@@ -46,7 +43,6 @@ const CHARACTERS = [
         name: '黄仁勋',
         nameEn: 'Jensen Huang',
         emoji: '💻',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Jensen_Huang_%282023%29.jpg/240px-Jensen_Huang_%282023%29.jpg',
         wealth: 100_000_000_000,
         currency: 'USD',
         tagline: 'AI 教父、皮衣刀客',
@@ -59,7 +55,6 @@ const CHARACTERS = [
         name: '比尔·盖茨',
         nameEn: 'Bill Gates',
         emoji: '🪟',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Bill_Gates_2023.jpg/240px-Bill_Gates_2023.jpg',
         wealth: 130_000_000_000,
         currency: 'USD',
         tagline: '慈善之王、微软之父',
@@ -72,7 +67,6 @@ const CHARACTERS = [
         name: '沃伦·巴菲特',
         nameEn: 'Warren Buffett',
         emoji: '🦁',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Warren_Buffett_2018.jpg/240px-Warren_Buffett_2018.jpg',
         wealth: 140_000_000_000,
         currency: 'USD',
         tagline: '股神、奥马哈先知',
@@ -85,7 +79,6 @@ const CHARACTERS = [
         name: '张一鸣',
         nameEn: 'Zhang Yiming',
         emoji: '🎵',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Zhang_Yiming_2023.jpg/240px-Zhang_Yiming_2023.jpg',
         wealth: 55_000_000_000,
         currency: 'USD',
         tagline: '算法之王、字节跳动',
@@ -98,7 +91,6 @@ const CHARACTERS = [
         name: '钟睒睒',
         nameEn: 'Zhong Shanshan',
         emoji: '🏭',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Zhong_Shanshan_2021.jpg/240px-Zhong_Shanshan_2021.jpg',
         wealth: 65_000_000_000,
         currency: 'USD',
         tagline: '水中茅台、农夫山泉',
@@ -136,8 +128,8 @@ const ITEMS = [
         category: 'food',
         price: 5.99,
         emoji: '☕',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Starbucks_Coffee_Logo.svg/240px-Starbucks_Coffee_Logo.svg.png',
         desc: '一杯中杯拿铁，亿万富翁的标配',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDcwNEEiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKYlTwvdGV4dD4KPC9zdmc+',
         toast: '作为亿万富翁，你终于实现了星巴克自由！☕',
     },
     {
@@ -147,6 +139,7 @@ const ITEMS = [
         price: 7.50,
         emoji: '🍵',
         desc: '网红奶茶，排队两小时喝到嘴',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRjZCNkIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfjbU8L3RleHQ+Cjwvc3ZnPg==',
         toast: '不用排队直接买，这就是有钱人的快乐吗？🧋',
     },
     {
@@ -156,6 +149,7 @@ const ITEMS = [
         price: 350,
         emoji: '🥩',
         desc: '顶级A5和牛，入口即化',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNDMDM5MkIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfpak8L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'maotai',
@@ -163,8 +157,8 @@ const ITEMS = [
         category: 'food',
         price: 1999,
         emoji: '🍶',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Kweichow_Moutai_logo.svg/240px-Kweichow_Moutai_logo.svg.png',
         desc: '国酒茅台，越喝越有',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNCMjIyMjIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfjbY8L3RleHQ+Cjwvc3ZnPg==',
         // toast 按角色在 app.js 中处理
     },
     {
@@ -174,6 +168,7 @@ const ITEMS = [
         price: 800,
         emoji: '🍽️',
         desc: '三星主厨定制，一生必吃一次',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNzRDM0MiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKtkDwvdGV4dD4KPC9zdmc+',
         toast: '米其林：欢迎亿万富翁光临 👨‍🍳',
     },
     {
@@ -183,6 +178,7 @@ const ITEMS = [
         price: 15000,
         emoji: '🍷',
         desc: '传说中的82年拉菲，来瓶82年的拉菲',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4QjAwMDAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfjbc8L3RleHQ+Cjwvc3ZnPg==',
         toast: '82年的拉菲配99年的雪茄，这才是人生 🫧',
     },
 
@@ -194,6 +190,7 @@ const ITEMS = [
         price: 49,
         emoji: '🪥',
         desc: '智能电动牙刷，刷牙也是科技感',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDk4REIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfqqU8L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'dyson',
@@ -202,8 +199,8 @@ const ITEMS = [
         price: 429,
         emoji: '💨',
         desc: '吹风机中的爱马仕',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM5QjU5QjYiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfkqg8L3RleHQ+Cjwvc3ZnPg==',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Dyson_logo.svg/240px-Dyson_logo.svg.png",
         toast: '戴森：感谢富豪的认可 💇‍♂️',
     },
     {
@@ -213,8 +210,8 @@ const ITEMS = [
         price: 849,
         emoji: '🧱',
         desc: '7541块积木，拼到你手软',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNjdFMjIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfp7E8L3RleHQ+Cjwvc3ZnPg==',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/240px-LEGO_logo.svg.png",
     },
     {
         id: 'switch',
@@ -224,7 +221,8 @@ const ITEMS = [
         emoji: '🎮',
         desc: '任天堂最新款，先买再说',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Nintendo_Switch_logo.svg/240px-Nintendo_Switch_logo.svg.png",    },
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNzRDM0MiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfjq48L3RleHQ+Cjwvc3ZnPg==',
+    },
     {
         id: 'sonytv',
         name: '索尼 85寸 电视',
@@ -232,8 +230,8 @@ const ITEMS = [
         price: 3999,
         emoji: '📺',
         desc: '85寸大法，客厅就是电影院',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyQzNFNTAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfk7o8L3RleHQ+Cjwvc3ZnPg==',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Sony_logo.svg/240px-Sony_logo.svg.png",
     },
     {
         id: 'smart-home',
@@ -242,6 +240,7 @@ const ITEMS = [
         price: 50000,
         emoji: '🏠',
         desc: '全屋智能化，躺着把事办了',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxQUJDOUMiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfj6A8L3RleHQ+Cjwvc3ZnPg==',
     },
 
     // ---- 📱 科技数码 ----
@@ -251,8 +250,8 @@ const ITEMS = [
         category: 'tech',
         price: 1599,
         emoji: '📱',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/IPhone_15_Pro_%26_iPhone_15_Pro_Max.jpg/240px-IPhone_15_Pro_%26_iPhone_15_Pro_Max.jpg',
         desc: '最新款苹果，买最贵的配置',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDQ5NUUiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn5OxPC90ZXh0Pgo8L3N2Zz4=',
         toast: '买iPhone不需要理由，因为你有钱 💅',
     },
     {
@@ -262,8 +261,8 @@ const ITEMS = [
         price: 3499,
         emoji: '💻',
         desc: '顶配M4芯片，剪辑8K不卡顿',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNCREMzQzciIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn5K7PC90ZXh0Pgo8L3N2Zz4=',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/MacBook_Pro_16_inch.svg/240px-MacBook_Pro_16_inch.svg.png",
     },
     {
         id: 'tesla',
@@ -271,8 +270,8 @@ const ITEMS = [
         category: 'tech',
         price: 89990,
         emoji: '🚗',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2019_Tesla_Model_3_Performance_AWD_Front.jpg/240px-2019_Tesla_Model_3_Performance_AWD_Front.jpg',
         desc: '零百加速1.99秒，电动猛兽',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNzRDM0MiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfmpc8L3RleHQ+Cjwvc3ZnPg==',
         // toast 按角色在 app.js 处理
     },
     {
@@ -282,8 +281,8 @@ const ITEMS = [
         price: 35000,
         emoji: '🖥️',
         desc: 'AI训练神器，黄仁勋的快乐卡',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM3NkI5MDAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIzNiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+R1BVPC90ZXh0Pgo8L3N2Zz4=',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/NVIDIA_H100_GPU.jpg/240px-NVIDIA_H100_GPU.jpg",
         // toast 按角色处理
     },
     {
@@ -293,6 +292,7 @@ const ITEMS = [
         price: 100000,
         emoji: '🖧',
         desc: '在家搭建自己的数据中心',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM3RjhDOEQiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn5alPC90ZXh0Pgo8L3N2Zz4=',
     },
     {
         id: 'starlink',
@@ -301,8 +301,8 @@ const ITEMS = [
         price: 2500,
         emoji: '🛰️',
         desc: '马斯克的太空Wi-Fi，全球不断网',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDk4REIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfm7A8L3RleHQ+Cjwvc3ZnPg==',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Starlink_Logo.svg/240px-Starlink_Logo.svg.png",
     },
 
     // ---- 👔 轻奢风尚 ----
@@ -313,8 +313,8 @@ const ITEMS = [
         price: 1850,
         emoji: '👜',
         desc: '经典老花，百搭不过时',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4RTQ0QUQiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn5GcPC90ZXh0Pgo8L3N2Zz4=',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Louis_Vuitton_logo.svg/240px-Louis_Vuitton_logo.svg.png",
     },
     {
         id: 'rolex',
@@ -323,8 +323,8 @@ const ITEMS = [
         price: 10000,
         emoji: '⌚',
         desc: '一劳永逸，绿水鬼',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGMUM0MEYiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKMqDwvdGV4dD4KPC9zdmc+',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Rolex_logo.svg/240px-Rolex_logo.svg.png",
         toast: '一劳永逸？想多了，买了还想买 ⌚',
     },
     {
@@ -334,8 +334,8 @@ const ITEMS = [
         price: 30000,
         emoji: '👛',
         desc: '比股票还难买的包，你直接拿下',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNjdFMjIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn6ezPC90ZXh0Pgo8L3N2Zz4=',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Hermes_logo.svg/240px-Hermes_logo.svg.png",
     },
     {
         id: 'vca',
@@ -344,6 +344,7 @@ const ITEMS = [
         price: 5200,
         emoji: '📿',
         desc: '四叶草带来好运',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyRUNDNzEiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKcqDwvdGV4dD4KPC9zdmc+',
     },
     {
         id: 'patek',
@@ -353,7 +354,8 @@ const ITEMS = [
         emoji: '⌚',
         desc: '表王中的表王，排队三年起',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Patek_Philippe_logo.svg/240px-Patek_Philippe_logo.svg.png",    },
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxQUJDOUMiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKMmjwvdGV4dD4KPC9zdmc+',
+    },
     {
         id: 'savile',
         name: '定制西装 Savile Row',
@@ -361,6 +363,7 @@ const ITEMS = [
         price: 15000,
         emoji: '🤵',
         desc: '伦敦萨维尔街顶级定制，量体裁衣',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDQ5NUUiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn5GUPC90ZXh0Pgo8L3N2Zz4=',
     },
 
     // ---- ✈️ 尊享旅行 ----
@@ -371,6 +374,7 @@ const ITEMS = [
         price: 50000,
         emoji: '🏝️',
         desc: '独享一座岛，面朝大海',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMEJGRkYiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfj508L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'jet',
@@ -379,6 +383,7 @@ const ITEMS = [
         price: 120000,
         emoji: '✈️',
         desc: '湾流G600包机，想飞就飞',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNzRDM0MiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKciDwvdGV4dD4KPC9zdmc+',
     },
     {
         id: 'cruise',
@@ -387,6 +392,7 @@ const ITEMS = [
         price: 250000,
         emoji: '🚢',
         desc: '顶级邮轮套房环游世界80天',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDk4REIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfmqI8L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'space-travel',
@@ -395,6 +401,7 @@ const ITEMS = [
         price: 450000,
         emoji: '🚀',
         desc: '维珍银河亚轨道飞行，体验失重',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4RTQ0QUQiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfmoA8L3RleHQ+Cjwvc3ZnPg==',
         // toast 按角色处理
     },
     {
@@ -404,6 +411,7 @@ const ITEMS = [
         price: 75000,
         emoji: '🧊',
         desc: '豪华探险破冰船，登陆南极大陆',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEU2RUQiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfkKc8L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'burj',
@@ -412,6 +420,7 @@ const ITEMS = [
         price: 25000,
         emoji: '🏨',
         desc: '帆船酒店最贵套房，一晚的享受',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGMzlDMTIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4+ZPC90ZXh0Pgo8L3N2Zz4=',
     },
 
     // ---- 💃 高端社交 ----
@@ -422,6 +431,7 @@ const ITEMS = [
         price: 10000,
         emoji: '💃',
         desc: '顶级模特伴游，全程奢华体验',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFOTFFNjMiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfkoM8L3RleHQ+Cjwvc3ZnPg==',
         toast: '这才是高端社交的正确打开方式 💃',
     },
     {
@@ -431,6 +441,7 @@ const ITEMS = [
         price: 50000,
         emoji: '⭐',
         desc: '与一线明星共进私人晚宴',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkQ3MDAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKtkDwvdGV4dD4KPC9zdmc+',
         toast: '帮我也要个签名 🤩',
     },
     {
@@ -440,6 +451,7 @@ const ITEMS = [
         price: 200000,
         emoji: '🎉',
         desc: '私人别墅派对，名模云集',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRjQwODEiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfjok8L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'butler',
@@ -448,6 +460,7 @@ const ITEMS = [
         price: 100000,
         emoji: '🤵‍♂️',
         desc: '英式管家全年24/7随叫随到',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM3OTU1NDgiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfpLU8L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'vip-club',
@@ -456,6 +469,7 @@ const ITEMS = [
         price: 1000000,
         emoji: '💳',
         desc: '全球顶级私人俱乐部终身会员',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkQ3MDAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfko48L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'hollywood',
@@ -464,6 +478,7 @@ const ITEMS = [
         price: 2000000,
         emoji: '📸',
         desc: '奥斯卡红毯VIP + 明星合影 + 晚宴',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNzRDM0MiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfjqw8L3RleHQ+Cjwvc3ZnPg==',
     },
 
     // ---- 💎 极致奢品 ----
@@ -475,7 +490,7 @@ const ITEMS = [
         emoji: '🏎️',
         desc: '顶级超跑，极速490km/h',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Bugatti_logo_2004.svg/240px-Bugatti_logo_2004.svg.png",        toast: '这车一脚油门下去，半套房没了 🏎️',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNzRDM0MiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfj448L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'yacht',
@@ -484,6 +499,7 @@ const ITEMS = [
         price: 50_000_000,
         emoji: '🛥️',
         desc: '100米超级游艇，带直升机坪',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDk4REIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfmqI8L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'island',
@@ -492,6 +508,7 @@ const ITEMS = [
         price: 80_000_000,
         emoji: '🏝️',
         desc: '加勒比海私人岛屿，你的王国',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyRUNDNzEiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfj508L3RleHQ+Cjwvc3ZnPg==',
         toast: '岛主你好！请问要取什么岛名？ 🏝️',
     },
     {
@@ -502,7 +519,8 @@ const ITEMS = [
         emoji: '🎨',
         desc: '毕加索真迹，挂在家里当装饰',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pablo_Picasso_Signature.svg/240px-Pablo_Picasso_Signature.svg.png",    },
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGMzlDMTIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn5aMPC90ZXh0Pgo8L3N2Zz4=',
+    },
     {
         id: 'gulfstream',
         name: '湾流 G700 私人飞机',
@@ -511,7 +529,8 @@ const ITEMS = [
         emoji: '🛩️',
         desc: '全球最先进公务机，富豪标配',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Gulfstream_logo.svg/240px-Gulfstream_logo.svg.png",    },
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDk4REIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKciDwvdGV4dD4KPC9zdmc+',
+    },
     {
         id: 'monaco',
         name: '摩纳哥顶层公寓',
@@ -519,6 +538,7 @@ const ITEMS = [
         price: 350_000_000,
         emoji: '🏙️',
         desc: '摩纳哥天际线顶层豪宅，俯瞰地中海',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGMUM0MEYiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4+ZPC90ZXh0Pgo8L3N2Zz4=',
     },
 
     // ---- 🏢 收购公司 ----
@@ -529,8 +549,8 @@ const ITEMS = [
         price: 44_000_000_000,
         emoji: '🐦',
         desc: '把蓝色小鸟收入囊中，自由删帖',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxREExRjIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIzNiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+WDwvdGV4dD4KPC9zdmc+',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/240px-Logo_of_Twitter.svg.png",
         toast: '🎉 欢迎加入俱乐部！现在你可以自由删帖了（不是）',
     },
     {
@@ -540,6 +560,7 @@ const ITEMS = [
         price: 5_000_000_000,
         emoji: '🏢',
         desc: '年营收10亿，下个独角兽？',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDk4REIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4+iPC90ZXh0Pgo8L3N2Zz4=',
     },
     {
         id: 'your-building',
@@ -548,6 +569,7 @@ const ITEMS = [
         price: 500_000_000,
         emoji: '🏗️',
         desc: '买下开发商，给自己免物业费',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyN0FFNjAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4+XPC90ZXh0Pgo8L3N2Zz4=',
         toast: '以后小区物业见到你都得叫爸爸 🏠',
     },
     {
@@ -557,8 +579,8 @@ const ITEMS = [
         price: 165_000_000_000,
         emoji: '✅',
         desc: 'Just buy it! 整个公司都是你的',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRjZCMzUiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI1MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKclDwvdGV4dD4KPC9zdmc+',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/240px-Logo_NIKE.svg.png",
         toast: '以后全球的勾子都归你了 ✅',
     },
     {
@@ -568,8 +590,8 @@ const ITEMS = [
         price: 3_000_000_000_000,
         emoji: '🍎',
         desc: '库克：不卖。而且你也买不起 🤷',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyQzNFNTAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfjY48L3RleHQ+Cjwvc3ZnPg==',
 
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/240px-Apple_logo_black.svg.png",
         unaffordableForAll: true,
     },
     {
@@ -579,6 +601,7 @@ const ITEMS = [
         price: 1_800_000_000_000,
         emoji: '🔍',
         desc: '佩奇：想得美。而且你也买不起 🤷',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM0Mjg1RjQiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNTUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xNSkiLz4KICA8dGV4dCB4PSIxMDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIzNiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+RzwvdGV4dD4KPC9zdmc+',
         unaffordableForAll: true,
     },
 
@@ -590,6 +613,7 @@ const ITEMS = [
         price: 50_000_000,
         emoji: '🏡',
         desc: '好莱坞明星做邻居',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNjdFMjIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4+hPC90ZXh0Pgo8L3N2Zz4=',
         toast: '你的新地址：比弗利山庄 富豪路 1号 📍',
     },
     {
@@ -599,6 +623,7 @@ const ITEMS = [
         price: 80_000_000,
         emoji: '🏙️',
         desc: '俯瞰中央公园，曼哈顿天际线',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDQ5NUUiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4+ZPC90ZXh0Pgo8L3N2Zz4=',
     },
     {
         id: 'hawaii',
@@ -607,6 +632,7 @@ const ITEMS = [
         price: 120_000_000,
         emoji: '🌴',
         desc: '海滨庄园，私人沙滩',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxQUJDOUMiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4+WPC90ZXh0Pgo8L3N2Zz4=',
     },
     {
         id: 'london-mansion',
@@ -615,6 +641,7 @@ const ITEMS = [
         price: 200_000_000,
         emoji: '🏛️',
         desc: '伦敦市中心顶级豪宅',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4RTQ0QUQiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4+wPC90ZXh0Pgo8L3N2Zz4=',
     },
     {
         id: 'onsen',
@@ -623,6 +650,7 @@ const ITEMS = [
         price: 35_000_000,
         emoji: '♨️',
         desc: '富士山脚下，私汤温泉',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFNzRDM0MiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7imag8L3RleHQ+Cjwvc3ZnPg==',
     },
     {
         id: 'palm-island',
@@ -631,6 +659,7 @@ const ITEMS = [
         price: 45_000_000,
         emoji: '🌊',
         desc: '世界岛别墅，帆船酒店景',
+        imageUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI1MCUiIGN5PSI0MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGMzlDMTIiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGQwZDJiIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2cpIiByeD0iMTQiLz4KICAgIDxyZWN0IHg9IjQ1IiB5PSI1MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI5MCIgcng9IjEwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7wn4yFPC90ZXh0Pgo8L3N2Zz4=',
     },
 ];
 
