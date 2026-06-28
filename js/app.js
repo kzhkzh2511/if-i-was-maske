@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // 假如我是马斯克 — 核心逻辑
 
 // ============================================================
@@ -125,14 +125,12 @@ function getRemainingWealth() {
 }
 
 function getBudget() {
-    const char = getChar();
-    return Math.max(0, char.wealth - getCartTotal());
+    return Math.max(0, state.wealth - getCartTotal());
 }
 
 function getSpentRatio() {
     const char = getChar();
-    const budget = getBudget();
-    return 1 - (budget / char.wealth);
+    return Math.min(1, getCartTotal() / char.wealth);
 }
 
 function isLoanItem(itemId) {
@@ -321,8 +319,7 @@ function addToCart(itemId) {
     state.cart[itemId]++;
 
     // Update wealth
-    const char = getChar();
-    animateWealthTo(Math.max(0, char.wealth - getCartTotal()));
+    animateWealthTo(Math.max(0, state.wealth - getCartTotal()));
 
     updateCartUI();
     renderProducts(getActiveCategory());
@@ -336,27 +333,25 @@ function updateQuantity(itemId, delta) {
         delete state.cart[itemId];
     }
 
-    const char = getChar();
-    animateWealthTo(Math.max(0, char.wealth - getCartTotal()));
+    animateWealthTo(Math.max(0, state.wealth - getCartTotal()));
 
     updateCartUI();
     renderProducts(getActiveCategory());
 }
 
 function removeItem(itemId) {
+    const itemTotal = (getItem(itemId).price * (state.cart[itemId] || 0));
     delete state.cart[itemId];
-
-    const char = getChar();
-    animateWealthTo(Math.max(0, char.wealth - getCartTotal()));
+    animateWealthTo(Math.max(0, state.wealth + itemTotal));
 
     updateCartUI();
     renderProducts(getActiveCategory());
 }
 
 function clearCart() {
+    const oldTotal = getCartTotal();
     state.cart = {};
-    const char = getChar();
-    animateWealthTo(char.wealth);
+    animateWealthTo(state.wealth + oldTotal);
     updateCartUI();
     renderProducts(getActiveCategory());
 }
@@ -366,7 +361,7 @@ function updateCartUI() {
     const total = getCartTotal();
     const count = items.reduce((s, { qty }) => s + qty, 0);
     const char = getChar();
-    const remaining = Math.max(0, char.wealth - total);
+    const remaining = Math.max(0, state.wealth - total);
 
     // Badge
     dom.cartBadge.textContent = count;
@@ -652,7 +647,7 @@ function openCheckout() {
 
     const char = getChar();
     const total = getCartTotal();
-    const remaining = Math.max(0, char.wealth - total);
+    const remaining = Math.max(0, state.wealth - total);
     const ratio = getSpentRatio();
 
     // Hide success, show body
@@ -822,7 +817,7 @@ function generateBillImage() {
     const char = getChar();
     const items = getCartItems();
     const total = getCartTotal();
-    const remaining = Math.max(0, char.wealth - total);
+    const remaining = Math.max(0, state.wealth - total);
     const ratio = getSpentRatio();
 
     // Canvas dimensions
@@ -994,7 +989,7 @@ function copyReceipt() {
     const char = getChar();
     const items = getCartItems();
     const total = getCartTotal();
-    const remaining = Math.max(0, char.wealth - total);
+    const remaining = Math.max(0, state.wealth - total);
     const ratio = getSpentRatio();
 
     let text = `================================\n`;
