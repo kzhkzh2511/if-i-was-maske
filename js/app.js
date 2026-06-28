@@ -77,6 +77,17 @@ const dom = {
     header: $('#header'),
 };
 
+// ===================== CONSTANTS =====================
+const WEALTH_ANIM_MIN_MS = 200;
+const WEALTH_ANIM_MAX_MS = 800;
+const WEALTH_ANIM_SCALE = 0.00000001;  // diff * scale = duration
+const TOAST_DURATION_MS = 3000;
+const TOAST_MAX_VISIBLE = 3;
+const CANVAS_PADDING = 40;
+const CANVAS_LINE_HEIGHT = 24;
+const CART_FAB_BOTTOM_DESKTOP = 32;
+const MAX_LOAN_RATIO = 100;  // max total loan = character.wealth * this
+
 // ===================== UTILITY =====================
 function formatMoney(n) {
     if (n >= 1e12) return '$' + (n / 1e12).toFixed(1) + 'T';
@@ -118,7 +129,8 @@ function getBudget() {
 
 function getSpentRatio() {
     const char = getChar();
-    return 1 - (getRemainingWealth() / char.wealth);
+    const budget = getBudget();
+    return 1 - (budget / char.wealth);
 }
 
 function isLoanItem(itemId) {
@@ -145,7 +157,7 @@ function animateWealthTo(target) {
     }
     const start = state.wealth;
     const diff = target - start;
-    const duration = Math.min(800, Math.max(200, Math.abs(diff) * 0.00000001));
+    const duration = Math.min(WEALTH_ANIM_MAX_MS, Math.max(WEALTH_ANIM_MIN_MS, Math.abs(diff) * WEALTH_ANIM_SCALE));
     const startTime = performance.now();
 
     function frame(now) {
@@ -276,7 +288,7 @@ function renderProducts(categoryId) {
 
         return `
             <div class="product-card" data-id="${item.id}">
-                <div class="product-emoji">${item.imageUrl ? '<img class="product-img" src="' + item.imageUrl + '" alt="' + item.name + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'\'" loading="lazy">' + '<span style="display:none">' + item.emoji + '</span>' : item.emoji}</div>
+                <div class="product-emoji">${item.imageUrl ? '<img class="product-img" src="' + item.imageUrl + '" alt="' + item.name + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'\'" loading="lazy" style="min-height:80px;background:var(--glass-bg);">' + '<span style="display:none">' + item.emoji + '</span>' : item.emoji}</div>
                 <div class="product-name">${item.name}</div>
                 <div class="product-desc">${item.desc}</div>
                 <div class="product-price">${formatMoneyFull(item.price)}</div>
@@ -285,13 +297,7 @@ function renderProducts(categoryId) {
         `;
     }).join('');
 
-    // Event delegation on product grid
-    dom.productGrid.querySelectorAll('.product-btn[data-action="add"]').forEach(btn => {
-        btn.addEventListener('click', () => addToCart(btn.dataset.id));
-    });
-    dom.productGrid.querySelectorAll('.product-btn[data-action="loan"]').forEach(btn => {
-        btn.addEventListener('click', () => openLoan(btn.dataset.id));
-    });
+    // Product button clicks handled via event delegation in initApp
 }
 
 // ===================== CART =====================
@@ -382,17 +388,17 @@ function updateCartUI() {
         </div>
     `).join('');
 
-    // Event listeners for qty buttons
-    dom.cartItems.querySelectorAll('.qty-btn').forEach(btn => {
-        btn.addEventListener('click', () => updateQuantity(btn.dataset.id, parseInt(btn.dataset.delta)));
-    });
-    dom.cartItems.querySelectorAll('.cart-item-delete').forEach(btn => {
-        btn.addEventListener('click', () => removeItem(btn.dataset.id));
-    });
+    // Cart item events handled via event delegation in initApp
 
     // Summary
     dom.cartTotal.textContent = formatMoneyFull(total);
     dom.cartRemain.textContent = formatMoneyFull(remaining);
+    if (state.totalLoan > 0 && remaining === 0) {
+        dom.cartRemain.textContent = '🏦 贷款已覆盖';
+        dom.cartRemain.style.color = 'var(--accent-red)';
+    } else {
+        dom.cartRemain.style.color = 'var(--accent-green)';
+    }
 
     if (state.totalLoan > 0) {
         dom.cartLoanRow.style.display = 'flex';
@@ -412,13 +418,13 @@ function showToast(message, type = 'egg') {
     toast.textContent = message;
     dom.toastContainer.appendChild(toast);
 
-    while (dom.toastContainer.children.length > 3) {
+    while (dom.toastContainer.children.length > TOAST_MAX_VISIBLE) {
         dom.toastContainer.firstChild.remove();
     }
 
     setTimeout(() => {
         if (toast.parentNode) toast.remove();
-    }, 3000);
+    }, TOAST_DURATION_MS);
 }
 
 function showToastForItem(itemId) {
@@ -483,7 +489,7 @@ function openLoan(itemId) {
 
     pendingLoanItemId = itemId;
     const char = getChar();
-    const remaining = getRemainingWealth();
+    const remaining = getBudget();
     const loanAmount = item.price - remaining;
 
     dom.loanAmount.textContent = formatMoneyFull(item.price);
@@ -782,7 +788,7 @@ function generateBillImage() {
     // ----- Header -----
     y = 55;
     ctx.textAlign = 'center';
-    ctx.font = '28px "Noto Sans SC", sans-serif';
+    ctx.font = '28px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
     ctx.fillStyle = '#0a0a1a';
     ctx.fillText(`假如我是${char.name}`, width / 2, y);
 
@@ -793,7 +799,7 @@ function generateBillImage() {
 
     // Date
     y += 26;
-    ctx.font = '13px "Noto Sans SC", sans-serif';
+    ctx.font = '13px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
     ctx.fillStyle = '#555';
     ctx.fillText(new Date().toLocaleString('zh-CN'), width / 2, y);
 
@@ -813,7 +819,7 @@ function generateBillImage() {
     items.forEach(({ item, qty }) => {
         const line = `${item.name}  × ${qty}`;
         ctx.textAlign = 'left';
-        ctx.font = '14px "Noto Sans SC", sans-serif';
+        ctx.font = '14px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
         ctx.fillStyle = '#0a0a1a';
         ctx.fillText(line, padding, y);
 
@@ -837,7 +843,7 @@ function generateBillImage() {
     // ----- Totals -----
     y += 20;
     ctx.textAlign = 'right';
-    ctx.font = '15px "Noto Sans SC", sans-serif';
+    ctx.font = '15px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
 
     const drawRow = (label, value, color = '#0a0a1a') => {
         ctx.textAlign = 'left';
@@ -847,7 +853,7 @@ function generateBillImage() {
         ctx.font = '14px "Orbitron", monospace';
         ctx.fillStyle = color;
         ctx.fillText(value, width - padding, y);
-        ctx.font = '15px "Noto Sans SC", sans-serif';
+        ctx.font = '15px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
         y += lineHeight;
     };
 
@@ -863,12 +869,12 @@ function generateBillImage() {
     // ----- Funny Review -----
     y += 10;
     ctx.textAlign = 'center';
-    ctx.font = '11px "Noto Sans SC", sans-serif';
+    ctx.font = '11px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
     ctx.fillStyle = '#888';
     ctx.fillText('★ 趣味评价 ★', width / 2, y);
     y += 18;
 
-    ctx.font = '13px "Noto Sans SC", sans-serif';
+    ctx.font = '13px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
     ctx.fillStyle = '#555';
     const fullReview = getFunnyReview(ratio, char).replace(/<br>/g, ' ');
     const review = fullReview.length > 50 ? fullReview.substring(0, 47) + '...' : fullReview;
@@ -892,7 +898,7 @@ function generateBillImage() {
     ctx.stroke();
 
     y += 18;
-    ctx.font = '10px "Noto Sans SC", sans-serif';
+    ctx.font = '10px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
     ctx.fillStyle = '#aaa';
     ctx.fillText('生成于 假如我是... 虚拟富翁购物体验', width / 2, y);
     y += 14;
@@ -969,6 +975,7 @@ function resetAll() {
     state.cart = {};
     state.totalLoan = 0;
     state.loanCount = 0;
+    state.loanedItems = [];
     const char = getChar();
     state.wealth = char.wealth;
 
@@ -1046,6 +1053,30 @@ function initApp() {
             closeCheckout();
             closeLoan();
         }
+    });
+
+    // Cart item event delegation (qty + delete buttons)
+    dom.cartItems.addEventListener('click', (e) => {
+        const qtyBtn = e.target.closest('.qty-btn');
+        if (qtyBtn) {
+            updateQuantity(qtyBtn.dataset.id, parseInt(qtyBtn.dataset.delta));
+            return;
+        }
+        const delBtn = e.target.closest('.cart-item-delete');
+        if (delBtn) {
+            removeItem(delBtn.dataset.id);
+            return;
+        }
+    });
+
+    // Product button event delegation (single listener on productGrid)
+    dom.productGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.product-btn');
+        if (!btn) return;
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+        if (action === 'add') addToCart(id);
+        if (action === 'loan') openLoan(id);
     });
 
     // Card hover effect - event delegation on productGrid
