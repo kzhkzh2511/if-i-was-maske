@@ -571,10 +571,10 @@ function closeLoan() {
 }
 
 function confirmLoan() {
-    if (!pendingLoanItemId) return;
+    const item = pendingLoanItemId ? getItem(pendingLoanItemId) : null;
 
-    const item = getItem(pendingLoanItemId);
-    if (!item) return;
+    // For product-specific loans, need the item
+    if (pendingLoanItemId && !item) return;
 
     const remaining = getBudget();
     const loanAmount = Math.max(0, item.price - remaining);
