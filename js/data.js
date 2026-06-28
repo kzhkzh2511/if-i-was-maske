@@ -131,6 +131,11 @@ const ITEMS = [
         desc: '一杯中杯拿铁，亿万富翁的标配',
 
         imageUrl: 'assets/products/starbucks.jpg',
+
+        charToasts: {
+            _default: '作为亿万富翁，你终于实现了星巴克自由！☕',
+            _qty_10: '你打算在星巴克开会开到下周吗？'
+        },
         toast: '作为亿万富翁，你终于实现了星巴克自由！☕',
     },
     {
@@ -162,6 +167,10 @@ const ITEMS = [
         desc: '国酒茅台，越喝越有',
 
         imageUrl: 'assets/products/maotai.jpg',        // toast 按角色在 app.js 中处理
+
+        charToasts: {
+            jackma: '马老师：这个我熟 🍶'
+        },
     },
     {
         id: 'michelin',
@@ -278,6 +287,11 @@ const ITEMS = [
         desc: '零百加速1.99秒，电动猛兽',
 
         imageUrl: 'assets/products/tesla.jpg',        // toast 按角色在 app.js 处理
+
+        charToasts: {
+            musk: '好家伙，左手造车右手买车 🚗',
+            _default: '帮马斯克冲业绩？好人啊 😤'
+        },
     },
     {
         id: 'h100',
@@ -288,6 +302,10 @@ const ITEMS = [
         desc: 'AI训练神器，黄仁勋的快乐卡',
 
         imageUrl: 'assets/products/h100.jpg',
+
+        charToasts: {
+            huang: '黄老板：自家产品也要买？💰'
+        },
         // toast 按角色处理
     },
     {
@@ -408,6 +426,11 @@ const ITEMS = [
         desc: '维珍银河亚轨道飞行，体验失重',
 
         imageUrl: 'assets/products/space-travel.jpg',        // toast 按角色处理
+
+        charToasts: {
+            musk: '马斯克：亲，要不要员工折扣？🚀',
+            jackma: '马老师也要上天了？'
+        },
     },
     {
         id: 'antarctica',
@@ -559,6 +582,10 @@ const ITEMS = [
         desc: '把蓝色小鸟收入囊中，自由删帖',
 
         imageUrl: 'assets/products/twitter.jpg',
+
+        charToasts: {
+            _default: '🎉 欢迎加入俱乐部！现在你可以自由删帖了（不是）'
+        },
         toast: '🎉 欢迎加入俱乐部！现在你可以自由删帖了（不是）',
     },
     {
