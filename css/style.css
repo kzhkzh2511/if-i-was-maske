@@ -180,6 +180,8 @@ body {
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
 }
 .character-strip::-webkit-scrollbar { display: none; }
 
@@ -274,6 +276,14 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -294,6 +304,20 @@ body {
     cursor: default;
     position: relative;
     overflow: hidden;
+    animation: cardIn 0.35s ease backwards;
+}
+.product-card:nth-child(1) { animation-delay: 0.00s; }
+.product-card:nth-child(2) { animation-delay: 0.04s; }
+.product-card:nth-child(3) { animation-delay: 0.08s; }
+.product-card:nth-child(4) { animation-delay: 0.12s; }
+.product-card:nth-child(5) { animation-delay: 0.16s; }
+.product-card:nth-child(6) { animation-delay: 0.20s; }
+.product-card:nth-child(7) { animation-delay: 0.24s; }
+.product-card:nth-child(8) { animation-delay: 0.28s; }
+
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 .product-card::before {
     content: '';
@@ -329,7 +353,11 @@ body {
     width: 100%;
     height: 80px;
     object-fit: contain;
-    border-radius: 4px;
+    border-radius: 6px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover .product-img {
+    transform: scale(1.05);
 }
 
 .product-name {
@@ -446,7 +474,10 @@ body {
     font-family: var(--font-body);
     padding: 0 4px;
     box-shadow: 0 2px 8px rgba(255, 23, 68, 0.4);
-    transition: var(--transition);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cart-badge.bump {
+    transform: scale(1.4);
 }
 
 /* ============================================================

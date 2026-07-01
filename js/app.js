@@ -374,8 +374,14 @@ function updateCartUI() {
     const remaining = Math.max(0, state.wealth);
 
     // Badge
+    const prevCount = parseInt(dom.cartBadge.textContent) || 0;
     dom.cartBadge.textContent = count;
     dom.cartBadge.style.display = count > 0 ? 'flex' : 'none';
+    // Bump animation when count increases
+    if (count > prevCount) {
+        dom.cartBadge.classList.add('bump');
+        setTimeout(() => dom.cartBadge.classList.remove('bump'), 300);
+    }
 
     // Empty state
     if (count === 0) {
@@ -834,136 +840,196 @@ function generateBillImage() {
     const remaining = Math.max(0, state.wealth);
     const ratio = getSpentRatio();
 
-    // Canvas dimensions
-    const width = 600;
+    // ---------- HiDPI / Retina support ----------
+    const dpr = window.devicePixelRatio || 1;
+    const logicalWidth = 600;
     const padding = 40;
-    const lineHeight = 24;
-    let y = padding;
+    const lineHeight = 28;
 
-    // Increase height based on content
+    // Calculate dynamic height
     const itemLines = items.reduce((s, { item, qty }) => s + 1 + Math.ceil((item.name.length * 14) / 400), 0);
-    const totalHeight = padding * 2 + 40 + 30 + 30 + 10 + itemLines * lineHeight + 30 + 6 * lineHeight + 60 + 40 + 60;
-    canvas.width = width;
-    canvas.height = Math.max(500, totalHeight);
+    const reviewLineCount = Math.min(6, Math.ceil(getFunnyReview(ratio, char).replace(/<br>/g, '  ').length / 34));
+    const totalLogicalHeight = padding * 2 + 50 + 36 + 30 + 14
+        + itemLines * lineHeight + 14
+        + 5 * lineHeight + 14
+        + reviewLineCount * 20 + 14
+        + 40 + 30;
 
-    // Draw background
-    ctx.fillStyle = '#f5f0e8';
-    ctx.fillRect(0, 0, width, canvas.height);
+    canvas.width = logicalWidth * dpr;
+    canvas.height = Math.max(500, totalLogicalHeight) * dpr;
+    canvas.style.width = logicalWidth + 'px';
+    canvas.style.height = (Math.max(500, totalLogicalHeight)) + 'px';
+    ctx.scale(dpr, dpr);
 
-    // Decorative border
-    ctx.strokeStyle = '#B8960C';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(10, 10, width - 20, canvas.height - 20);
+    const W = logicalWidth;
+    let y = 0;
 
-    // Double line top
-    ctx.strokeStyle = '#FFD700';
+    // Helper: draw a rounded rectangle path
+    function roundRect(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+    }
+
+    // ---------- Background: gradient from char accent ----------
+    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height / dpr);
+    const baseColor = char.accentColor || '#FFD700';
+    grad.addColorStop(0, '#1a1a2e');
+    grad.addColorStop(0.4, '#16213e');
+    grad.addColorStop(1, '#0f0f1a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, canvas.height / dpr);
+
+    // ---------- Subtle decorative grid pattern ----------
+    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
     ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(padding, 30);
-    ctx.lineTo(width - padding, 30);
+    for (let i = 0; i < canvas.height / dpr; i += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(W, i);
+        ctx.stroke();
+    }
+
+    // ---------- Gold border with glow ----------
+    ctx.shadowColor = baseColor;
+    ctx.shadowBlur = 15;
+    ctx.strokeStyle = baseColor;
+    ctx.lineWidth = 2;
+    roundRect(ctx, 12, 12, W - 24, (canvas.height / dpr) - 24, 12);
     ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(padding, 34);
-    ctx.lineTo(width - padding, 34);
+    ctx.shadowBlur = 0;
+
+    // Inner thin border
+    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+    ctx.lineWidth = 1;
+    roundRect(ctx, 16, 16, W - 32, (canvas.height / dpr) - 32, 10);
     ctx.stroke();
 
-    // ----- Header -----
-    y = 55;
+    // ---------- Top accent bar ----------
+    const barGrad = ctx.createLinearGradient(24, 0, W - 24, 0);
+    barGrad.addColorStop(0, 'transparent');
+    barGrad.addColorStop(0.15, baseColor);
+    barGrad.addColorStop(0.5, '#FFD700');
+    barGrad.addColorStop(0.85, baseColor);
+    barGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = barGrad;
+    ctx.fillRect(24, 24, W - 48, 3);
+
+    // ---------- Header ----------
+    y = 50;
+
+    // Character emoji (large, centered)
     ctx.textAlign = 'center';
-    ctx.font = '28px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
-    ctx.fillStyle = '#0a0a1a';
-    ctx.fillText(`假如我是${char.name}`, width / 2, y);
+    ctx.font = '48px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
+    ctx.fillText(char.emoji, W / 2, y);
+    y += 10;
 
-    y += 30;
-    ctx.font = '12px "Orbitron", monospace';
-    ctx.fillStyle = '#B8960C';
-    ctx.fillText('── 购物纪念账单 ──', width / 2, y);
+    // Title
+    ctx.font = 'bold 26px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(`假如我是${char.name}`, W / 2, y + 30);
+    y += 44;
+
+    // Subtitle
+    ctx.font = '11px "Orbitron", monospace';
+    ctx.fillStyle = baseColor;
+    ctx.fillText('—— 购物纪念账单 ——', W / 2, y);
+    y += 22;
 
     // Date
-    y += 26;
-    ctx.font = '13px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
-    ctx.fillStyle = '#555';
-    ctx.fillText(new Date().toLocaleString('zh-CN'), width / 2, y);
+    ctx.font = '12px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.fillText(new Date().toLocaleString('zh-CN'), W / 2, y);
+    y += 24;
 
     // Separator
-    y += 14;
-    ctx.strokeStyle = '#ccc';
+    ctx.strokeStyle = 'rgba(255,215,0,0.3)';
     ctx.lineWidth = 1;
-    ctx.setLineDash([4, 4]);
+    ctx.setLineDash([6, 4]);
     ctx.beginPath();
     ctx.moveTo(padding, y);
-    ctx.lineTo(width - padding, y);
+    ctx.lineTo(W - padding, y);
     ctx.stroke();
     ctx.setLineDash([]);
+    y += 18;
 
-    // ----- Items -----
-    y += 14;
+    // ---------- Column headers ----------
+    ctx.textAlign = 'left';
+    ctx.font = '11px "Orbitron", monospace';
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.fillText('ITEM', padding, y);
+    ctx.textAlign = 'right';
+    ctx.fillText('AMOUNT', W - padding, y);
+    y += 18;
+
+    // ---------- Items ----------
     items.forEach(({ item, qty }) => {
-        const line = `${item.name}  × ${qty}`;
         ctx.textAlign = 'left';
-        ctx.font = '14px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
-        ctx.fillStyle = '#0a0a1a';
-        ctx.fillText(line, padding, y);
+        ctx.font = '15px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
+        ctx.fillStyle = '#ffffff';
+        const label = `${item.emoji}  ${item.name}  × ${qty}`;
+        ctx.fillText(label, padding, y);
 
         ctx.textAlign = 'right';
-        ctx.font = '13px "Orbitron", monospace';
-        ctx.fillStyle = '#333';
-        ctx.fillText(formatMoneyFull(item.price * qty), width - padding, y);
+        ctx.font = '14px "Orbitron", monospace';
+        ctx.fillStyle = baseColor;
+        ctx.fillText(formatMoneyFull(item.price * qty), W - padding, y);
 
         y += lineHeight;
     });
 
     // Separator
-    y += 6;
-    ctx.strokeStyle = '#666';
+    y += 4;
+    ctx.strokeStyle = 'rgba(255,215,0,0.3)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(padding, y);
-    ctx.lineTo(width - padding, y);
+    ctx.lineTo(W - padding, y);
     ctx.stroke();
+    y += 18;
 
-    // ----- Totals -----
-    y += 20;
-    ctx.textAlign = 'right';
-    ctx.font = '15px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
-
-    const drawRow = (label, value, color = '#0a0a1a') => {
+    // ---------- Totals ----------
+    const drawRow = (label, value, color = '#ffffff') => {
         ctx.textAlign = 'left';
-        ctx.fillStyle = '#333';
+        ctx.font = '14px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.6)';
         ctx.fillText(label, padding, y);
         ctx.textAlign = 'right';
-        ctx.font = '14px "Orbitron", monospace';
+        ctx.font = 'bold 16px "Orbitron", monospace';
         ctx.fillStyle = color;
-        ctx.fillText(value, width - padding, y);
-        ctx.font = '15px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
+        ctx.fillText(value, W - padding, y);
         y += lineHeight;
     };
 
-    drawRow('💰 总消费', formatMoneyFull(total), '#B8960C');
-    drawRow('🧾 剩余财富', remaining > 0 ? formatMoneyFull(remaining) : '💸 已破产', remaining > 0 ? '#333' : '#FF1744');
+    drawRow('💰 总消费', formatMoneyFull(total), baseColor);
+    drawRow('🧾 剩余财富', remaining > 0 ? formatMoneyFull(remaining) : '💸 已破产',
+        remaining > 0 ? 'rgba(255,255,255,0.8)' : '#FF4444');
 
     if (state.totalLoan > 0) {
-        drawRow('🏦 银行贷款', formatMoneyFull(state.totalLoan), '#FF1744');
+        drawRow('🏦 银行贷款', formatMoneyFull(state.totalLoan), '#FF4444');
     }
 
-    drawRow('📊 消费占比', (ratio * 100).toFixed(2) + '%', '#B8960C');
+    drawRow('📊 消费占比', (ratio * 100).toFixed(2) + '%', baseColor);
 
-    // ----- Funny Review -----
-    y += 10;
+    // ---------- Funny Review ----------
+    y += 6;
     ctx.textAlign = 'center';
-    ctx.font = '11px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
-    ctx.fillStyle = '#888';
-    ctx.fillText('★ 趣味评价 ★', width / 2, y);
+    ctx.font = '10px "Orbitron", monospace';
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.fillText('★ 趣味评价 ★', W / 2, y);
     y += 18;
 
     ctx.font = '13px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
-    ctx.fillStyle = '#555';
-    // Render the funny review on canvas:
-    // 1) Split by <br> to respect line breaks from the review text
-    // 2) Strip remaining HTML tags from each line
-    // 3) Wrap each line at maxChars chars (36) to prevent overflow
-    // 4) Limit to 6 lines max to keep the bill compact
-    const maxChars = 36;
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    const maxChars = 34;
     const reviewParts = getFunnyReview(ratio, char).split('<br>');
     var reviewLines = [];
     reviewParts.forEach(function(part) {
@@ -973,29 +1039,30 @@ function generateBillImage() {
             text = text.substring(maxChars);
         }
     });
-    // Show at most 6 lines to prevent canvas height overflow
     reviewLines.slice(0, 6).forEach(function(line) {
-        ctx.fillText(line, width / 2, y);
-        y += 18;
+        ctx.fillText(line, W / 2, y);
+        y += 20;
     });
 
-    // ----- Footer -----
-    y += 14;
-    ctx.strokeStyle = '#FFD700';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(padding, y);
-    ctx.lineTo(width - padding, y);
-    ctx.stroke();
+    // ---------- Footer ----------
+    y += 12;
+    const footerGrad = ctx.createLinearGradient(24, 0, W - 24, 0);
+    footerGrad.addColorStop(0, 'transparent');
+    footerGrad.addColorStop(0.2, 'rgba(255,215,0,0.4)');
+    footerGrad.addColorStop(0.8, 'rgba(255,215,0,0.4)');
+    footerGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = footerGrad;
+    ctx.fillRect(24, y - 1, W - 48, 1);
 
     y += 18;
+    ctx.textAlign = 'center';
     ctx.font = '10px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
-    ctx.fillStyle = '#aaa';
-    ctx.fillText('生成于 假如我是... 虚拟富翁购物体验', width / 2, y);
-    y += 14;
-    ctx.fillText('截图分享给好友，看谁花得更狠！', width / 2, y);
+    ctx.fillStyle = 'rgba(255,255,255,0.25)';
+    ctx.fillText('生成于 假如我是... 虚拟富翁购物体验', W / 2, y);
+    y += 16;
+    ctx.fillText('截图分享给好友，看谁花得更狠！', W / 2, y);
 
-    // Convert to image and download
+    // ---------- Export & download ----------
     canvas.toBlob((blob) => {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
