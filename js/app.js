@@ -16,7 +16,6 @@ const state = {
 
 // ===================== DOM REFS =====================
 const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
 
 const dom = {
     charStrip: $('#characterStrip'),
@@ -88,6 +87,17 @@ const TOAST_MAX_VISIBLE = 3;
 const MAX_LOAN_RATIO = 100;  // max total loan = character.wealth * this
 
 // ===================== UTILITY =====================
+/** Escape HTML special chars to prevent XSS when rendering user-visible text into innerHTML */
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 function formatMoney(n) {
     if (n >= 1e12) return '$' + (n / 1e12).toFixed(1) + 'T';
     if (n >= 1e9)  return '$' + (n / 1e9).toFixed(1) + 'B';
@@ -118,8 +128,14 @@ function getCartTotal() {
 }
 
 
+/**
+ * Get remaining spending budget.
+ * NOTE: state.wealth is ALREADY tracked as "initial wealth minus cart total"
+ * (updated via animateWealthTo whenever cart changes). So this is simply
+ * state.wealth — no need to subtract cartTotal again.
+ */
 function getBudget() {
-    return Math.max(0, state.wealth - getCartTotal());
+    return Math.max(0, state.wealth);
 }
 
 function getSpentRatio() {
@@ -181,12 +197,12 @@ function renderCharacters() {
     dom.charStrip.innerHTML = CHARACTERS.map(c => `
         <button class="char-btn ${c.id === state.currentCharId ? 'active' : ''}"
                 data-char="${c.id}"
-                title="${c.nameEn} — ${c.tagline}">
+                title="${escapeHtml(c.nameEn)} — ${escapeHtml(c.tagline)}">
             <span class="char-avatar">
-                ${c.imageUrl ? '<img class="char-img" src="' + c.imageUrl + '" alt="' + c.name + '" onerror="this.style.display=\x27none\x27;this.nextElementSibling.style.display=\x27inline\x27">' : ''}
+                ${c.imageUrl ? '<img class="char-img" src="' + c.imageUrl + '" alt="' + escapeHtml(c.name) + '" onerror="this.style.display=\x27none\x27;this.nextElementSibling.style.display=\x27inline\x27">' : ''}
                 <span class="char-emoji-fallback" style="${c.imageUrl ? 'display:none' : ''}">${c.emoji}</span>
             </span>
-            <span class="char-name">${c.name}</span>
+            <span class="char-name">${escapeHtml(c.name)}</span>
             <span class="char-tag">${formatMoney(c.wealth)}</span>
         </button>
     `).join('');
@@ -276,9 +292,9 @@ function renderProducts(categoryId) {
 
         return `
             <div class="product-card" data-id="${item.id}">
-                <div class="product-emoji">${item.imageUrl ? '<img class="product-img" src="' + item.imageUrl + '" alt="' + item.name + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'\'" loading="lazy" style="height:80px;background:var(--glass-bg);">' + '<span style="display:none">' + item.emoji + '</span>' : item.emoji}</div>
-                <div class="product-name">${item.name}</div>
-                <div class="product-desc">${item.desc}</div>
+                <div class="product-emoji">${item.imageUrl ? '<img class="product-img" src="' + item.imageUrl + '" alt="' + escapeHtml(item.name) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'\'" loading="lazy" style="height:80px;background:var(--glass-bg);">' + '<span style="display:none">' + item.emoji + '</span>' : item.emoji}</div>
+                <div class="product-name">${escapeHtml(item.name)}</div>
+                <div class="product-desc">${escapeHtml(item.desc)}</div>
                 <div class="product-price">${formatMoneyFull(item.price)}</div>
                 ${btnHtml}
             </div>
@@ -306,8 +322,11 @@ function addToCart(itemId) {
     if (!state.cart[itemId]) state.cart[itemId] = 0;
     state.cart[itemId]++;
 
-    // Update wealth
-    animateWealthTo(Math.max(0, state.wealth - getCartTotal()));
+    // Deduct the new item's price from remaining wealth.
+    // (state.wealth already reflects "initial minus old cart", so we only
+    //  subtract this item's price, NOT the full cart total — the latter
+    //  would double-count since state.wealth is already reduced.)
+    animateWealthTo(Math.max(0, state.wealth - item.price));
 
     updateCartUI();
     renderProducts(getActiveCategory());
@@ -316,12 +335,15 @@ function addToCart(itemId) {
 
 function updateQuantity(itemId, delta) {
     if (!state.cart[itemId]) return;
+    const item = getItem(itemId);
+    if (!item) return;
     state.cart[itemId] += delta;
     if (state.cart[itemId] <= 0) {
         delete state.cart[itemId];
     }
 
-    animateWealthTo(Math.max(0, state.wealth - getCartTotal()));
+    // Adjust wealth by the price delta of one item (±item.price)
+    animateWealthTo(Math.max(0, state.wealth - item.price * delta));
 
     updateCartUI();
     renderProducts(getActiveCategory());
@@ -348,8 +370,8 @@ function updateCartUI() {
     const items = getCartItems();
     const total = getCartTotal();
     const count = items.reduce((s, { qty }) => s + qty, 0);
-    const char = getChar();
-    const remaining = Math.max(0, state.wealth - total);
+    // state.wealth already represents "initial minus cart total", so it IS the remaining
+    const remaining = Math.max(0, state.wealth);
 
     // Badge
     dom.cartBadge.textContent = count;
@@ -372,7 +394,7 @@ function updateCartUI() {
         <div class="cart-item">
             <span class="cart-item-emoji">${item.emoji}</span>
             <div class="cart-item-info">
-                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-name">${escapeHtml(item.name)}</div>
                 <div class="cart-item-price">${formatMoneyFull(item.price)}</div>
             </div>
             <div class="cart-item-qty">
@@ -429,23 +451,31 @@ function showToastForItem(itemId) {
     if (!item) return;
 
     const char = getChar();
+    const qty = state.cart[itemId] || 1;
     let msg = '';
 
-    // Character-specific toasts (data-driven from item.charToasts)
+    // Toast priority chain (first non-empty wins):
+    // 1) Quantity-specific: _qty_10 fires when user adds the 10th of that item
     if (item.charToasts) {
-        msg = item.charToasts[char.id] || item.charToasts._default || '';
+        msg = item.charToasts['_qty_' + qty] || '';
     }
+
+    // 2) Character-specific toast (keyed by char id, e.g. 'musk' / 'jackma')
+    if (!msg && item.charToasts) {
+        msg = item.charToasts[char.id] || '';
+    }
+
+    // 3) Default character toast (shared across all characters)
+    if (!msg && item.charToasts) {
+        msg = item.charToasts._default || '';
+    }
+
+    // 4) Generic item toast
     if (!msg && item.toast) {
         msg = item.toast;
     }
 
-    // Quantity-based toasts
-    if (!msg && item.id === 'starbucks' && state.cart[itemId] >= 10) {
-        msg = '你打算在星巴克开会开到下周吗？';
-    } else if (!msg && item.id === 'starbucks') {
-        msg = '作为亿万富翁，你终于实现了星巴克自由！☕';
-    }
-
+    // 5) Category fallback
     if (!msg && item.category === 'food') {
         msg = `${item.emoji} ${item.name} 加入购物车！`;
     } else if (!msg) {
@@ -511,18 +541,21 @@ function openLoan(itemId) {
     const gap = Math.max(0, item.price - getBudget());
 
     // Calculate required collateral package (A + B + C...)
+    // needed[] stores { index, name, value } so we can map back to original loan indices
     let needed = [];
     let totalValue = 0;
     let nextLoanIdx = state.loanCount;
     while (totalValue < gap && nextLoanIdx < LOAN_CONFIG.collateralList.length && LOAN_CONFIG.collateralValues[nextLoanIdx] > 0) {
         needed.push({
+            index: nextLoanIdx,  // ← store the original loan index directly (no fragile math later)
             name: LOAN_CONFIG.collateralList[nextLoanIdx],
             value: LOAN_CONFIG.collateralValues[nextLoanIdx]
         });
         totalValue += LOAN_CONFIG.collateralValues[nextLoanIdx];
         nextLoanIdx++;
     }
-    state.pendingCollaterals = needed.map(n => nextLoanIdx - needed.length + needed.indexOf(n));
+    // Map from the stored index, not from computed position (was: nextLoanIdx - needed.length + indexOf)
+    state.pendingCollaterals = needed.map(n => n.index);
 
     if (totalValue < gap) {
         // Ran through all available collaterals but still not enough
@@ -536,7 +569,6 @@ function openLoan(itemId) {
 
     // Combine display
     const collList = needed.map(n => n.name + '(' + formatMoneyFull(n.value) + ')').join(' + ');
-    const char = getChar();
 
     dom.loanAmount.textContent = '商品: ' + formatMoneyFull(item.price) + '  缺口: ' + formatMoneyFull(gap);
     dom.loanRate.textContent = LOAN_CONFIG.interestRate + '%';
@@ -576,19 +608,22 @@ function confirmLoan() {
     const remaining = getBudget();
     const loanAmount = item ? Math.max(0, item.price - remaining) : 0;
 
-    const char = getChar();
+    // Calculate batch value BEFORE the ceiling check
+    // (Fix: the original code checked loanAmount vs maxLoan but then added batchValue,
+    //  which could exceed the cap. Now we check batchValue directly.)
+    const colls = state.pendingCollaterals || [Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1)];
+    let batchValue = 0;
+    colls.forEach(function(idx) { batchValue += LOAN_CONFIG.collateralValues[idx]; });
 
-    // Collateral validation already done in openLoan (combined package check)
+    // Ceiling check: use batchValue (actual amount that will be added)
+    const char = getChar();
     const maxLoan = char.wealth * MAX_LOAN_RATIO;
-    if (state.totalLoan + loanAmount > maxLoan) {
+    if (state.totalLoan + batchValue > maxLoan) {
         showToast('贷款：王行长：你的信用额已经用尽了！先还一点再来吧！', 'error');
         closeLoan();
         return;
     }
 
-    const colls = state.pendingCollaterals || [Math.min(state.loanCount, LOAN_CONFIG.collateralList.length - 1)];
-    let batchValue = 0;
-    colls.forEach(function(idx) { batchValue += LOAN_CONFIG.collateralValues[idx]; });
     state.totalLoan += batchValue;
     state.loanCount += colls.length;
     state.wealth += batchValue;
@@ -624,7 +659,8 @@ function openCheckout() {
 
     const char = getChar();
     const total = getCartTotal();
-    const remaining = Math.max(0, state.wealth - total);
+    // state.wealth is already initial minus cart, so it IS the remaining
+    const remaining = Math.max(0, state.wealth);
     const ratio = getSpentRatio();
 
     // Hide success, show body
@@ -638,7 +674,7 @@ function openCheckout() {
 
     dom.checkoutItems.innerHTML = items.map(({ item, qty }) => `
         <div class="co-row">
-            <span>${item.emoji} ${item.name} × ${qty}</span>
+            <span>${item.emoji} ${escapeHtml(item.name)} × ${qty}</span>
             <span class="co-amount">${formatMoneyFull(item.price * qty)}</span>
         </div>
     `).join('');
@@ -794,7 +830,8 @@ function generateBillImage() {
     const char = getChar();
     const items = getCartItems();
     const total = getCartTotal();
-    const remaining = Math.max(0, state.wealth - total);
+    // state.wealth already reflects "initial minus cart", so it IS the remaining
+    const remaining = Math.max(0, state.wealth);
     const ratio = getSpentRatio();
 
     // Canvas dimensions
@@ -805,7 +842,7 @@ function generateBillImage() {
 
     // Increase height based on content
     const itemLines = items.reduce((s, { item, qty }) => s + 1 + Math.ceil((item.name.length * 14) / 400), 0);
-    const totalHeight = padding * 2 + 40 + 30 + 30 + 10 + itemLines * lineHeight + 30 + 4 * lineHeight + 60 + 40 + 60;
+    const totalHeight = padding * 2 + 40 + 30 + 30 + 10 + itemLines * lineHeight + 30 + 6 * lineHeight + 60 + 40 + 60;
     canvas.width = width;
     canvas.height = Math.max(500, totalHeight);
 
@@ -921,17 +958,26 @@ function generateBillImage() {
 
     ctx.font = '13px "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif';
     ctx.fillStyle = '#555';
-    const fullReview = getFunnyReview(ratio, char).replace(/<br>/g, ' ');
-    const review = fullReview.length > 50 ? fullReview.substring(0, 47) + '...' : fullReview;
-    // Wrap long text
-    const maxChars = 30;
-    let reviewText = review;
-    while (reviewText.length > 0) {
-        const slice = reviewText.substring(0, maxChars);
-        ctx.fillText(slice, width / 2, y);
+    // Render the funny review on canvas:
+    // 1) Split by <br> to respect line breaks from the review text
+    // 2) Strip remaining HTML tags from each line
+    // 3) Wrap each line at maxChars chars (36) to prevent overflow
+    // 4) Limit to 6 lines max to keep the bill compact
+    const maxChars = 36;
+    const reviewParts = getFunnyReview(ratio, char).split('<br>');
+    var reviewLines = [];
+    reviewParts.forEach(function(part) {
+        var text = part.replace(/<[^>]*>/g, '');
+        while (text.length > 0) {
+            reviewLines.push(text.substring(0, maxChars));
+            text = text.substring(maxChars);
+        }
+    });
+    // Show at most 6 lines to prevent canvas height overflow
+    reviewLines.slice(0, 6).forEach(function(line) {
+        ctx.fillText(line, width / 2, y);
         y += 18;
-        reviewText = reviewText.substring(maxChars);
-    }
+    });
 
     // ----- Footer -----
     y += 14;
@@ -966,7 +1012,8 @@ function copyReceipt() {
     const char = getChar();
     const items = getCartItems();
     const total = getCartTotal();
-    const remaining = Math.max(0, state.wealth - total);
+    // state.wealth already reflects "initial minus cart", so it IS the remaining
+    const remaining = Math.max(0, state.wealth);
     const ratio = getSpentRatio();
 
     let text = `================================\n`;
@@ -1074,9 +1121,18 @@ function initApp() {
         confirmCheckout();
     });
     dom.btnDone.addEventListener('click', () => {
-        // Clear cart and close
+        // Reset state after checkout (same behavior as clicking X when completed).
+        // Note: do NOT use clearCart() here — that function restores wealth by
+        // adding the cart total back, but confirmCheckout never deducts wealth,
+        // so clearCart() would inflate the character's money.
         state.checkoutCompleted = false;
-        clearCart();
+        state.cart = {};
+        state.loanedItems = [];
+        const char = getChar();
+        state.wealth = char.wealth;
+        updateWealthDisplay();
+        updateCartUI();
+        renderProducts(getActiveCategory());
         closeCheckout();
     });
 

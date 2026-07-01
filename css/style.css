@@ -182,30 +182,6 @@ body {
     -ms-overflow-style: none;
 }
 .character-strip::-webkit-scrollbar { display: none; }
-.character-strip-scroll-hint {
-    position: relative;
-}
-.character-strip-scroll-hint::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    background: linear-gradient(to right, transparent, var(--bg-primary));
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.character-strip-scroll-hint.has-overflow::after {
-    opacity: 1;
-}
-@media (hover: none) and (pointer: coarse) {
-    .character-strip-scroll-hint::after {
-        width: 24px;
-        opacity: 0.6;
-    }
-}
 
 .char-btn {
     display: flex;
@@ -1018,7 +994,7 @@ body {
     position: fixed;
     top: calc(var(--header-h) + 8px);
     right: 16px;
-    z-index: 300;
+    z-index: 180;  /* below modal overlays (200) but above cart drawer (151) */
     display: flex;
     flex-direction: column;
     gap: 8px;

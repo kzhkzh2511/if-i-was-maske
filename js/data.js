@@ -104,15 +104,15 @@ const CHARACTERS = [
 // 品类数据
 // ============================================================
 const CATEGORIES = [
-    { id: 'food',     name: '☕ 美食饮品', icon: '☕' },
-    { id: 'daily',    name: '🏠 日用生活', icon: '🏠' },
-    { id: 'tech',     name: '📱 科技数码', icon: '📱' },
-    { id: 'fashion',  name: '👔 轻奢风尚', icon: '👔' },
-    { id: 'travel',   name: '✈️ 尊享旅行', icon: '✈️' },
-    { id: 'social',   name: '💃 高端社交', icon: '💃' },
-    { id: 'luxury',   name: '💎 极致奢品', icon: '💎' },
-    { id: 'company',  name: '🏢 收购公司', icon: '🏢' },
-    { id: 'realestate', name: '🏘️ 全球房产', icon: '🏘️' },
+    { id: 'food',     name: '☕ 美食饮品' },
+    { id: 'daily',    name: '🏠 日用生活' },
+    { id: 'tech',     name: '📱 科技数码' },
+    { id: 'fashion',  name: '👔 轻奢风尚' },
+    { id: 'travel',   name: '✈️ 尊享旅行' },
+    { id: 'social',   name: '💃 高端社交' },
+    { id: 'luxury',   name: '💎 极致奢品' },
+    { id: 'company',  name: '🏢 收购公司' },
+    { id: 'realestate', name: '🏘️ 全球房产' },
 ];
 
 // ============================================================
@@ -134,7 +134,7 @@ const ITEMS = [
 
         charToasts: {
             _default: '作为亿万富翁，你终于实现了星巴克自由！☕',
-            _qty_10: '你打算在星巴克开会开到下周吗？'
+            _qty_10: '你打算在星巴克开会开到下周吗？'  // shown when cart qty reaches 10
         },
         toast: '作为亿万富翁，你终于实现了星巴克自由！☕',
     },
@@ -638,7 +638,8 @@ const ITEMS = [
         emoji: '🔍',
         desc: '佩奇：想得美。而且你也买不起 🤷',
 
-        imageUrl: 'assets/products/google.jpg',        unaffordableForAll: true,
+        imageUrl: 'assets/products/google.jpg',
+        unaffordableForAll: true,
     },
 
     // ---- 🏘️ 全球房产 ----

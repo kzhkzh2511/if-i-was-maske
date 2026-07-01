@@ -4,12 +4,18 @@ Batch generate product images using Agnes-Image-2.1-Flash API.
 Saves images to assets/products/ and updates data.js with local file paths.
 
 Usage: py generate_images.py
-"""
 
+Requires AGNES_API_KEY environment variable to be set.
+"""
 import urllib.request, json, base64, os, re, sys, time
 
 API = "https://api.agnes-ai.com/v1"
-KEY = "sk-ENjC67gQGv7bLS2xMixabyVS1zZOtVj5KINxqp4zM4xcmiMW"
+# Read API key from environment — never hardcode secrets in source files
+KEY = os.environ.get("AGNES_API_KEY")
+if not KEY:
+    print("ERROR: AGNES_API_KEY environment variable is not set.")
+    print("Set it with: set AGNES_API_KEY=sk-...  (Windows)")
+    sys.exit(1)
 MODEL = "Agnes-Image-2.1-Flash"
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = os.path.join(ROOT, "assets", "products")
